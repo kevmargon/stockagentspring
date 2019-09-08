@@ -117,6 +117,14 @@ public class Order implements Serializable {
 	public void setCustomers(Customer customers) {
 		this.customers = customers;
 	}
+	
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

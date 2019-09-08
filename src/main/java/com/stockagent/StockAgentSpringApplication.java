@@ -86,7 +86,7 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
-		//Foreign key declaration & save
+		//Foreign key declaration & save Direction - Customer
 		Direction dir1 = new Direction();
 		Customer cus1 = new Customer("Juan","Martinez","Perez","75486523F",658457123);
 		dir1 = new Direction("Calle Zumalacárregui",18,24008,"Palencia","Palencia","Spain");
@@ -95,18 +95,50 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		directionRepository.save(dir1);
 		customerRepository.save(cus1);
 		
-		Category cat1 = categoryRepository.save(new Category("Abrigos"));
-		Employee emp1 = employeeRepository.save(new Employee("stromae","1234","Francisco","Celada","Prado","75213521C",655232156));
-		Order ord1 = orderRepository.save(new Order(order.getSellDate(),new BigDecimal(30),10));
-		Position pos1 = positionRepository.save(new Position("Admin"));
-		Product pro1 = productRepository.save(new Product("Abrigo Lisboa Rojo",new BigDecimal(70),20,"Adidas"));
-		Report rep1 = reportRepository.save(new Report("Esto es una prueba de informe",report.getDateTime()));
-		Supplier sup1 = supplierRepository.save(new Supplier("Inditex"));
-		
+		//Foreign key declaration & save Category - Product // Supplier - Product
+		Category cat1 = categoryRepository.save(new Category("Abrigos"));		
+		Product pro1 = new Product("Abrigo Lisboa Rojo",new BigDecimal(70),20,"Adidas");
+		pro1.setCategory(cat1);
+		Supplier sup1 = new Supplier("Inditex");
+		pro1.getSuppliers().add(sup1);
+		sup1.getProducts().add(pro1);
+		supplierRepository.save(sup1);
+		categoryRepository.save(cat1);
+		productRepository.save(pro1);
 
-		cus1.getOrder().add(ord1);
+		//Foreign key declaration & save Employee - Direction // Employee - Report // Employee - Position
+		Employee emp1 = new Employee("stromae","1234","Francisco","Celada","Prado","75213521C",655232156);
+		Direction dir2 = new Direction("Avenida Independencia",22,24001,"León","León","Spain");
+		emp1.setDirection(dir2);
+		Report rep1 = reportRepository.save(new Report("Esto es una prueba de informe",report.getDateTime()));
+		rep1.setEmployee(emp1);
+		employeeRepository.save(emp1);
+		reportRepository.save(rep1);
+		
+		//Foreign key declaration & save Orders - Employee // Orders - Customers
+		Order ord1 = new Order(order.getSellDate(),new BigDecimal(30),10);
+		ord1.setEmployee(emp1);
+		ord1.setCustomers(cus1);
+		orderRepository.save(ord1);
+		
+		//Foreign key declaration & save Employee - Position
+		Position pos1 = new Position("Admin");
+		pos1.getEmployees().add(emp1);
+		emp1.getPositions().add(pos1);
+		positionRepository.save(pos1);
+		employeeRepository.save(emp1);
+
+		//Foreign key declaration & save Product - Order
+		pro1.getOrders().add(ord1);
+		ord1.getProducts().add(pro1);
+		orderRepository.save(ord1);
+		productRepository.save(pro1);
+		
+		//cus1.getOrder().add(ord1);
 		
 		//categoryRepository.delete(cat1);
 	}
+	
+	
 
 }

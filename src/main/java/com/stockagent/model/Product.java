@@ -129,6 +129,14 @@ public class Product implements Serializable {
 		return orders;
 	}
 
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
