@@ -83,4 +83,20 @@ public class Report implements Serializable{
 		this.employee = employee;
 	}
 	
+	//ADDITIONAL METHODS
+	/* Methods ascribing the report and employee each other.
+	 * The remove method can be used for detaching before deleting, if we want cascade not 
+	 * to apply (not usual for oneToOne association).
+	 */
+	
+	public void addEmployee (Employee employee) {
+		setEmployee(employee);
+		employee.setReport(this);
+	}
+	
+	public void removeEmployee (Employee employee) {
+		setEmployee(null);
+		employee.setReport(null);
+	}
+
 }

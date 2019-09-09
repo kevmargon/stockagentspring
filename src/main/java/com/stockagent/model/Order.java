@@ -51,17 +51,19 @@ public class Order implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_customers")
-	private Customer customers;
+	private Customer customer;
+	
+	// CONSTRUCTORS
 	
 	public Order (){
 	}
 
-	public Order(Date sellDate, BigDecimal totalPrice, int amount, Employee employee, Customer customers) {
+	public Order(Date sellDate, BigDecimal totalPrice, int amount, Employee employee, Customer customer) {
 		this.sellDate = sellDate;
 		this.totalPrice = totalPrice;
 		this.amount = amount;
 		this.employee = employee;
-		this.customers = customers;
+		this.customer = customer;
 	}
 	
 	public Order(Date sellDate, BigDecimal totalPrice, int amount) {
@@ -69,7 +71,9 @@ public class Order implements Serializable {
 		this.totalPrice = totalPrice;
 		this.amount = amount;
 	}
-
+	
+	// GETTERS & SETTERS
+	
 	public long getId() {
 		return id;
 	}
@@ -110,12 +114,12 @@ public class Order implements Serializable {
 		this.employee = employee;
 	}
 
-	public Customer getCustomers() {
-		return customers;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCustomers(Customer customers) {
-		this.customers = customers;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 	public List<Product> getProducts() {
@@ -125,8 +129,11 @@ public class Order implements Serializable {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	
 }

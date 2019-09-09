@@ -1,4 +1,5 @@
 package com.stockagent.model;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,33 +13,32 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="positions")
-@NamedQuery(name="position.findAll", query="SELECT e FROM Position e")
-public class Position implements Serializable{
+@Table(name = "roles")
+@NamedQuery(name = "role.findAll", query = "SELECT e FROM Role e")
+public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
+	@Column(name = "id")
 	private long id;
-	@Column (name = "name")
+	@Column(name = "name")
 	private String name;
-	
-	// Bi-directional many-to-many association to Position
-	@ManyToMany(mappedBy = "positions") //REV: Lazy??
+
+	// Bi-directional many-to-many association to Role
+	@ManyToMany(mappedBy = "roles") // REV: Lazy??
 	private List<Employee> employees = new ArrayList<>();
 
-	// CONSTRUCTORES
-	public Position() {
-		
+	// CONSTRUCTORS
+	public Role() {
+
 	}
-	
-	public Position(String name) {
+
+	public Role(String name) {
 		this.name = name;
 	}
-	
+
 	// GETTERS & SETTERS
 
 	public long getId() {
@@ -68,25 +68,7 @@ public class Position implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	//ADDITIONAL METHODS
-	/* Methods for detaching  the position from the 
-	 * employee, adding another position or setting it to null.
-	 * Use before deleting, so cascade does not apply.
-	 */
-	//REV: hacen falta estos m�todos para un manytomany???????????
-	/*public void addEmployee (Employee employee) {
-		if(!employees.contains(employee)) {
-			getEmployees().add(employee);
-			employee.setPositions(this);
-		}
-	}
 
-	public void removeEmployee (Employee employee) {
-		if(employees.contains(employee)) {
-			getEmployees().remove(employee);
-			employee.setPositions(null);
-		}
-	}*/
 	
+
 }

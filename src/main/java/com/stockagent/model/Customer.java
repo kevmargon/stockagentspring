@@ -34,19 +34,21 @@ public class Customer implements Serializable {
 	private String dni;
 	
 	@Column(name = "phonenumber")
-	private int phoneNumber;
+	private String phoneNumber;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "id_direction") // owner
 	private Direction direction;
 	
-	@OneToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-	List<Order> order = new ArrayList<>();
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	List<Order> orders = new ArrayList<>();
 	
+	// CONSTRUCTORS
+
 	public Customer() {
 	}
 	
-	public Customer(String name, String surname1, String surname2, String dni, int phoneNumber) {
+	public Customer(String name, String surname1, String surname2, String dni, String phoneNumber) {
 		this.name = name;
 		this.surname1 = surname1;
 		this.surname2 = surname2;
@@ -54,18 +56,18 @@ public class Customer implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public Customer(String name, String surname1, String surname2, String dni, int phoneNumber,
-			Direction direction, List<Order> order) {
+	public Customer(String name, String surname1, String surname2, String dni, String phoneNumber,
+			Direction direction, List<Order> orders) {
 		this.name = name;
 		this.surname1 = surname1;
 		this.surname2 = surname2;
 		this.dni = dni;
 		this.phoneNumber = phoneNumber;
 		this.direction = direction;
-		this.order = order;
+		this.orders = orders;
 	}
 
-	public Customer(String name, String surname1, String surname2, String dni, int phoneNumber, Direction direction) {
+	public Customer(String name, String surname1, String surname2, String dni, String phoneNumber, Direction direction) {
 		this.name = name;
 		this.surname1 = surname1;
 		this.surname2 = surname2;
@@ -74,6 +76,8 @@ public class Customer implements Serializable {
 		this.direction = direction;
 	}
 
+	// GETTERS & SETTERS
+	
 	public long getId() {
 		return id;
 	}
@@ -98,11 +102,11 @@ public class Customer implements Serializable {
 		this.dni = dni;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -114,12 +118,12 @@ public class Customer implements Serializable {
 		this.direction = direction;
 	}
 
-	public List<Order> getOrder() {
-		return order;
+	public List<Order> getOrders() {
+		return orders;
 	}
 
-	public void setOrder(List<Order> order) {
-		this.order = order;
+	public void setOrder(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	public static long getSerialversionuid() {
@@ -141,5 +145,41 @@ public class Customer implements Serializable {
 	public void setSurname2(String surname2) {
 		this.surname2 = surname2;
 	}
+	//ADDITIONAL METHODS
+	/* Methods ascribing the customer and direction each other.
+	 * The remove method can be used for detaching before deleting, if we want cascade not 
+	 * to apply (not usual for oneToOne association).
+	 */
+	
+	public void addDirection (Direction direction) {
+		setDirection(direction);
+		direction.setCustomer(this);
+	}
+	
+	public void removeDirection (Direction direction) {
+		setDirection(null);
+		direction.setCustomer(null);
+	}
+
+	/* Methods for detaching  the customer from the 
+	 * order, adding another customer or setting it to null.
+	 * Use before deleting, so cascade does not apply.
+	 */
+	
+	public void addOrder (Order order) {
+		if(!orders.contains(order)) {
+			getOrders().add(order);
+			order.setCustomer(this);
+		}
+	}
+	
+	public void removeOrder (Order order) {
+		if(orders.contains(order)) {
+			getOrders().remove(order);
+			order.setCustomer(null);
+		}
+	}
+	
+
 	
 }

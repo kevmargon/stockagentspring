@@ -1,6 +1,7 @@
 package com.stockagent.model;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +49,8 @@ public class Employee implements Serializable{
 	@Column (name = "dni")
 	private String dni;
 	
-	@Column (name = "phonenumber")
-	private int phoneNumber;
+	@Column (name = "phonenumber")// REV-M nullable = false e igualar a 0 cuando era int y pasar a Integer
+	private String phoneNumber;
 	
 	//Unidirectional association to Direction
 	@OneToOne(cascade = {CascadeType.ALL}) 
@@ -60,12 +61,12 @@ public class Employee implements Serializable{
 	@OneToOne (mappedBy = "employee", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER) //REV: podemos Lazy??, realmente queremos que se eliminen en cascada los report al eliminar su employee?, si no problems, habr�a que desvincular
 	private Report report;
 	
-	// Bi-directional many-to-many association to Position
+	// Bi-directional many-to-many association to Role
 	@ManyToMany //REV: Lazy??
-	@JoinTable(name = "employee_position",
+	@JoinTable(name = "employee_role",
 	joinColumns = @JoinColumn(name = "id_employee", referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name = "id_position", referencedColumnName = "id"))
-	private List<Position> positions = new ArrayList<>();
+	inverseJoinColumns = @JoinColumn(name = "id_role", referencedColumnName = "id"))
+	private List<Role> roles = new ArrayList<>();
 	
 	// Bi-directional one-to-many association to Order
 	@OneToMany(mappedBy = "employee", cascade = {CascadeType.ALL}) //REV: podemos Lazy??, cascada?
@@ -75,8 +76,13 @@ public class Employee implements Serializable{
 	public Employee() {
 	}
 	
+	public Employee(String user, String pass) {
+		this.user = user;
+		this.pass = pass;
+	}
+
 	public Employee(String user, String pass, String name, String surname1, String surname2, String dni,
-			int phoneNumber, Direction direction, Report report) {
+			String phoneNumber, Direction direction, Report report) {
 		this.user = user;
 		this.pass = pass;
 		this.name = name;
@@ -89,7 +95,7 @@ public class Employee implements Serializable{
 	}
 	
 	public Employee(String user, String pass, String name, String surname1, String surname2, String dni,
-			int phoneNumber) {
+			String phoneNumber) {
 		this.user = user;
 		this.pass = pass;
 		this.name = name;
@@ -98,8 +104,6 @@ public class Employee implements Serializable{
 		this.dni = dni;
 		this.phoneNumber = phoneNumber;
 	}
-
-
 
 	// SET & GET METHODS
 	
@@ -127,7 +131,7 @@ public class Employee implements Serializable{
 		return dni;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
@@ -139,8 +143,8 @@ public class Employee implements Serializable{
 		return report;
 	}
 
-	public List<Position> getPositions() {
-		return positions;
+	public List<Role> getRoles() {
+		return roles;
 	}
 
 	public List<Order> getOrders() {
@@ -167,7 +171,7 @@ public class Employee implements Serializable{
 		this.dni = dni;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -179,8 +183,8 @@ public class Employee implements Serializable{
 		this.report = report;
 	}
 
-	public void setPositions(List<Position> positions) {
-		this.positions = positions;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	public void setOrders(List<Order> orders) {
@@ -204,11 +208,26 @@ public class Employee implements Serializable{
 	}
 	
 	//ADDITIONAL METHODS
+	/* Methods ascribing the employee and direction each other.
+	 * The remove method can be used for detaching before deleting, if we want cascade not 
+	 * to apply (not usual for oneToOne association).
+	 */
+	
+	public void addDirection (Direction direction) {
+		setDirection(direction);
+		direction.setEmployee(this);
+	}
+	
+	public void removeDirection (Direction direction) {
+		setDirection(null);
+		direction.setEmployee(null);
+	}
 
 	/* Methods for detaching  the employee from the 
 	 * order, adding another employee or setting it to null.
 	 * Use before deleting, so cascade does not apply.
 	 */
+	
 	public void addOrder (Order order) {
 		if(!orders.contains(order)) {
 			getOrders().add(order);
@@ -224,23 +243,24 @@ public class Employee implements Serializable{
 	}
 	
 	/* Methods for detaching  the employee from the 
-	 * position, adding another employee or setting it to null.
+	 * role, adding another employee or setting it to null.
 	 * Use before deleting, so cascade does not apply.
 	 */
-	//REV: hacen falta estos m�todos para un manytomany
-	/*public void addPosition (Position position) {
-		if(!positions.contains(position)) {
-			getPositions().add(position);
-			position.setEmployees(this);
+	public void addRole (Role role) {
+		if(!roles.contains(role)) {
+			getRoles().add(role);
+			role.getEmployees().add(this);
 		}
 	}
-
-	public void removePosition (Position position) {
-		if(positions.contains(position)) {
-			getPositions().remove(position);
-			position.setEmployees(null);
+	
+	public void removeRole (Role role) {
+		if(roles.contains(role)) {
+			getRoles().remove(role);
+			if(role.getEmployees().contains(this)){
+				role.getEmployees().remove(this);
+			}
 		}
-	}*/
+	}
 
 
 }

@@ -27,6 +27,9 @@ public class Supplier implements Serializable {
 	
 	@ManyToMany(mappedBy = "suppliers")
 	private List<Product> products = new ArrayList<>();
+	
+	
+	// CONSTRUCTORS
 
 	public Supplier (){
 	}
@@ -39,7 +42,9 @@ public class Supplier implements Serializable {
 		this.name = name;
 		this.products = products;
 	}
-
+	
+	// GETTERS & SETTERS
+	
 	public long getId() {
 		return id;
 	}
