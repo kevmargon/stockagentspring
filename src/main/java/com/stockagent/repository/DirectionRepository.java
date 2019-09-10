@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.stockagent.model.Direction;
 
 @Repository
-public interface DirectionRepository extends JpaRepository<Direction, String>{
+public interface DirectionRepository extends JpaRepository<Direction, Long>{
 
 }

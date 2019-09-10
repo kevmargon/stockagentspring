@@ -2,10 +2,11 @@ package com.stockagent;
 
 import java.math.BigDecimal;
 
+
 import java.time.Instant;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+//import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -107,8 +108,8 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		dir2 = new Direction("Calle Rosales",25,21082,"Soria","Soria","Spain");
 		
 		cus2.addDirection(dir2);
-		//dir2.setCustomer(cus2);
-		//cus2.setDirection(dir2);
+//		dir2.setCustomer(cus2);
+//		cus2.setDirection(dir2);
 		directionRepository.save(dir2);
 		customerRepository.save(cus2);
 
@@ -117,8 +118,8 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		dir3 = new Direction("Calle Real",2,22059,"Madrid","Madrid","Spain");
 		
 		cus3.addDirection(dir3);
-		//dir3.setCustomer(cus3);
-		//cus3.setDirection(dir3);
+//		dir3.setCustomer(cus3);
+//		cus3.setDirection(dir3);
 		directionRepository.save(dir3);
 		customerRepository.save(cus3);
 		
@@ -171,12 +172,12 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		Direction dir4 = new Direction("Avenida Independencia",22,24001,"León","León","Spain");
 		
 		emp1.addDirection (dir4);
-		//emp1.addDirection (dir4);
-		//emp1.setDirection(dir4);
+		
+//		emp1.setDirection(dir4);
 		Report rep1 = reportRepository.save(new Report("Esto es una prueba de informe",report.getDateTime()));
 		
-		rep1.addEmployee(emp1);
-		//rep1.setEmployee(emp1);
+		//rep1.addEmployee(emp1);
+		rep1.setEmployee(emp1);
 		employeeRepository.save(emp1);
 		reportRepository.save(rep1);
 		
@@ -185,11 +186,11 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		Direction dir5 = new Direction("Calle Teredia",31,24001,"León","León","Spain");
 		
 		emp2.addDirection (dir5);
-		//emp2.setDirection(dir5);
+//		emp2.setDirection(dir5);
 		Report rep2 = reportRepository.save(new Report("Esto es una segunda prueba de informe",report.getDateTime()));
 		
-		rep2.addEmployee(emp2);
-		//rep2.setEmployee(emp2);
+		//rep2.addEmployee(emp2);
+		rep2.setEmployee(emp2);
 		employeeRepository.save(emp2);
 		reportRepository.save(rep2);
 
@@ -197,11 +198,11 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		Direction dir6 = new Direction("Avenida Sagrada",1,24001,"León","León","Spain");
 		
 		emp3.addDirection (dir6);
-		//emp3.setDirection(dir6);
+//		emp3.setDirection(dir6);
 		Report rep3 = reportRepository.save(new Report("Esto es una tercera prueba de informe",report.getDateTime()));
 		
-		rep3.addEmployee(emp3);
-		//rep3.setEmployee(emp3);
+		//rep3.addEmployee(emp3);
+		rep3.setEmployee(emp3);
 		employeeRepository.save(emp3);
 		reportRepository.save(rep3);
 		
@@ -265,13 +266,13 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 	
 		//The product must be detached from the category before deleting such, if the product is wanted to stay in the database.
 		//REV-M --OJO: Habría que desvincular el producto si se quiere eliminar la categoria como sigue
-		List<Product> prods = new ArrayList<>();
-		prods = cat1.getProducts();
-		for(Product p: prods) {
-			cat1.removeProduct (p);
-		}
+//		List<Product> prods = new ArrayList<>();
+//		prods = cat1.getProducts();
+//		for(Product p: prods) {
+//			cat1.removeProduct (p);
+//		}
 		//cat1.removeProduct (pro1); // solo desvincularia pro1
-		categoryRepository.delete(cat1);
+		//categoryRepository.delete(cat1);
 	}
 	
 	

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.stockagent.model.Supplier;
 
 @Repository
-public interface SupplierRepository extends JpaRepository<Supplier, String>{
+public interface SupplierRepository extends JpaRepository<Supplier, Long>{
 
 }

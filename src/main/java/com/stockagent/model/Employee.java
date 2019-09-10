@@ -70,7 +70,7 @@ public class Employee implements Serializable{
 	
 	// Bi-directional one-to-many association to Order
 	@OneToMany(mappedBy = "employee", cascade = {CascadeType.ALL}) //REV: podemos Lazy??, cascada?
-	private List<Order> orders;
+	private List<Order> orders =  new ArrayList<>() ;
 	
 	//CONSTRUCTORS
 	public Employee() {

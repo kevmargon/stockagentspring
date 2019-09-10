@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.stockagent.model.Report;
 
 @Repository
-public interface ReportRepository extends JpaRepository<Report, String>{
+public interface ReportRepository extends JpaRepository<Report, Long>{
 
 }

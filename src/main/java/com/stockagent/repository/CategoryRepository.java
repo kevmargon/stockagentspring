@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.stockagent.model.Category;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, String>{
+public interface CategoryRepository extends JpaRepository<Category, Long>{
 
 }
