@@ -114,7 +114,6 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		Direction dir3 = new Direction();
 		Customer cus3 = new Customer("Sara","Prieto","Alonso","72345124G","695642158");
 		dir3 = new Direction("Calle Real",2,22059,"Madrid","Madrid","Spain");
-		
 		cus3.setDirection(dir3);
 		customerRepository.save(cus3);
 
@@ -123,7 +122,7 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		//Foreign key declaration & save Category - Product // Supplier - Product
 		Category cat1 = categoryRepository.save(new Category("Abrigos"));		
 		Product pro1 = new Product("Abrigo Lisboa Rojo",new BigDecimal(70),20,"Adidas");
-		//pro1.setCategory(cat1);
+		pro1.setCategory(cat1);
 		Supplier sup1 = new Supplier("Inditex");
 		
 		pro1.getSuppliers().add(sup1);
@@ -135,7 +134,7 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		
 		Category cat2 = categoryRepository.save(new Category("Pantalones"));		
 		Product pro2 = new Product("Pantalón Beige Luna",new BigDecimal(30),15,"Mango");
-		//pro2.setCategory(cat2);
+		pro2.setCategory(cat2);
 		Supplier sup2 = new Supplier("Desigual");
 		
 		pro2.getSuppliers().add(sup2);
@@ -146,8 +145,6 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 
 		Category cat3 = categoryRepository.save(new Category("Camisas"));		
 		Product pro3 = new Product("Camiseta Azul Cielo",new BigDecimal(25),25,"Adidas");
-		
-		
 		pro3.setCategory(cat3);
 		Supplier sup3 = new Supplier("Dassler");
 		

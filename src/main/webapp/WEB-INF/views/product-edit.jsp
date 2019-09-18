@@ -22,7 +22,7 @@
           	<span class="sr-only">(current)</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/manufacturers">Category</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/categories">Category</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/directions">Direction</a>

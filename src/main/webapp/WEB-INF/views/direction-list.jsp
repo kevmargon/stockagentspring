@@ -25,7 +25,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/products">Product</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/manufacturers">Category</a></li>
+						href="${pageContext.request.contextPath}/categories">Category</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="${pageContext.request.contextPath}/directions">Direction</a>
 						<span class="sr-only">(current)</span>
@@ -71,7 +71,7 @@
 
 				<tr>
 					<td>${direction.address}</td>
-					<td>${direction.houseNUmber}</td>
+					<td>${direction.houseNumber}</td>
 					<td>${direction.zipCode}</td>
 					<td>${direction.city}</td>
 					<td>${direction.province}</td>
