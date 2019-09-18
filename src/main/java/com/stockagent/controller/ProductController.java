@@ -1,5 +1,4 @@
 package com.stockagent.controller;
-import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -12,9 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.stockagent.model.Order;
 import com.stockagent.model.Product;
-import com.stockagent.model.Supplier;
+import com.stockagent.repository.CategoryRepository;
 import com.stockagent.repository.SupplierRepository;
 import com.stockagent.service.ProductService;
 
@@ -25,7 +23,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
-	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	@Autowired
 	private SupplierRepository supplierRepository;
 	
@@ -68,7 +67,9 @@ public class ProductController {
 		mav.setViewName("product-edit");
 //		The same jsp view file is used for the product editing form and  new product inserting one.
 		mav.addObject("product", new Product());
-		mav.addObject("suppliers", supplierRepository.findAll()); 
+		mav.addObject("categories", categoryRepository.findAll()); 
+//		The upper line adds the whole list of categories to the form	
+//		mav.addObject("suppliers", supplierRepository.findAll()); 
 //		The upper line adds the whole list of suppliers to the form
 		notification = null;
 		notificationLabel = null;
@@ -90,7 +91,8 @@ public class ProductController {
 		if (product.isPresent()) {
 			mav.setViewName("product-edit");
 			mav.addObject("product", product.get());
-			mav.addObject("suppliers", supplierRepository.findAll());
+			mav.addObject("categories", categoryRepository.findAll());
+//			mav.addObject("suppliers", supplierRepository.findAll());
 			notification = null;
 			notificationLabel = null;
 		} else {

@@ -44,15 +44,17 @@
 			<tr class="thead-dark">
 				<th>Name</th>
 				<th>Price</th>
-				<th>Quantity</th>
+				<th>Amount</th>
 				<th>Manufacturer</th>
+				<th>Category</th>
 			</tr>
 
 			<tr>
 				<td>${product.name}</td>
 				<td>${product.price}</td>
-				<td>${product.quantity}</td>
-				<td>${product.getManufacturer().name}</td>
+				<td>${product.amount}</td>
+				<td>${product.manufacturer}</td>
+				<td>${product.getCategory().name}</td>
 			</tr>
 		</table>
 		<a class="btn btn-info"
