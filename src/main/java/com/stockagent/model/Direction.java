@@ -22,16 +22,16 @@ public class Direction implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id")
-	private long id;
+	private Long id;
 	
 	@Column (name = "address")
 	private String address;
 	
-	@Column (name = "housenumber")
-	private int houseNumber;
+	@Column (name = "house_number")
+	private Integer houseNumber;
 	
-	@Column (name = "zipcode")
-	private int zipCode;
+	@Column (name = "zip_code")
+	private Integer zipCode;
 	
 	@Column (name = "city")
 	private String city;
@@ -42,12 +42,12 @@ public class Direction implements Serializable{
 	@Column (name = "country")
 	private String country;
 	
-	// Unidirectional association to Employee
-	@OneToOne (mappedBy = "direction", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER) //REV: podemos Lazy??, realmente queremos que se eliminen en cascada los report al eliminar su employee?, si no problems, habr�a que desvincular
+	// Unidirectional one-to-one association to Employee
+	@OneToOne (mappedBy = "direction", fetch = FetchType.LAZY) 
 	private Employee employee;
 	
-	// Unidirectional association to Customer
-	@OneToOne (mappedBy = "direction", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER) //REV: podemos Lazy??, realmente queremos que se eliminen en cascada los report al eliminar su employee?, si no problems, habr�a que desvincular
+	// Unidirectional one-to-one association to Customer
+	@OneToOne (mappedBy = "direction", fetch = FetchType.LAZY) 
 	private Customer customer;
 
 	
@@ -56,7 +56,7 @@ public class Direction implements Serializable{
 	public Direction() {
 	}
 
-	public Direction(String address, int houseNumber, int zipCode, String city, String province, String country) {
+	public Direction(String address, Integer houseNumber, Integer zipCode, String city, String province, String country) {
 		this.address = address;
 		this.houseNumber = houseNumber;
 		this.zipCode = zipCode;
@@ -71,7 +71,7 @@ public class Direction implements Serializable{
 		return serialVersionUID;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -79,11 +79,11 @@ public class Direction implements Serializable{
 		return address;
 	}
 
-	public int getHouseNumber() {
+	public Integer getHouseNumber() {
 		return houseNumber;
 	}
 
-	public int getZipCode() {
+	public Integer getZipCode() {
 		return zipCode;
 	}
 
@@ -107,7 +107,7 @@ public class Direction implements Serializable{
 		return customer;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -115,11 +115,11 @@ public class Direction implements Serializable{
 		this.address = address;
 	}
 
-	public void setHouseNumber(int houseNumber) {
+	public void setHouseNumber(Integer houseNumber) {
 		this.houseNumber = houseNumber;
 	}
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(Integer zipCode) {
 		this.zipCode = zipCode;
 	}
 

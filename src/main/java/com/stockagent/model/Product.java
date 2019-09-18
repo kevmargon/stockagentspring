@@ -22,7 +22,7 @@ public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
 	@Column(name = "name")
 	private String name;
@@ -31,7 +31,7 @@ public class Product implements Serializable {
 	private BigDecimal price;
 
 	@Column(name = "amount")
-	private int amount;
+	private Integer amount;
 	
 	@Column(name = "manufacturer")
 	private String manufacturer;
@@ -53,7 +53,7 @@ public class Product implements Serializable {
 	public Product() {
 	}
 
-	public Product(String name, BigDecimal price, int amount, String manufacturer, Category category) {
+	public Product(String name, BigDecimal price, Integer amount, String manufacturer, Category category) {
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
@@ -61,14 +61,14 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 	
-	public Product(String name, BigDecimal price, int amount, String manufacturer) {
+	public Product(String name, BigDecimal price, Integer amount, String manufacturer) {
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
 		this.manufacturer = manufacturer;
 	}
 	
-	public Product(String name, BigDecimal price, int amount, String manufacturer, Category category, List<Supplier> supplier,
+	public Product(String name, BigDecimal price, Integer amount, String manufacturer, Category category, List<Supplier> supplier,
 			List<Order> order) {
 		this.name = name;
 		this.price = price;
@@ -81,11 +81,11 @@ public class Product implements Serializable {
 	
 	// GETTERS & SETTERS
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -105,11 +105,11 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 
-	public int getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 

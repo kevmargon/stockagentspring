@@ -20,12 +20,12 @@ public class Category implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)//FetchType LAZY by default
 	List<Product> products = new ArrayList<>();
 	
 	// CONSTRUCTORS
@@ -39,11 +39,11 @@ public class Category implements Serializable {
 
 	// GETTERS & SETTERS
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

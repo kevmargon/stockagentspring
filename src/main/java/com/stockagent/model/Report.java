@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,14 +24,14 @@ public class Report implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id")
-	private long id;
+	private Long id;
 	@Column (name = "description")
 	private String description;
 	@Column (name = "date")
-	private Date dateTime;// ALAN: preguntar tipo de dato (tb en clase order) (puse de paquete util per tb habia de sql)
+	private Date dateTime;
 	
 	//Unidirectional association to Employee
-	@OneToOne(cascade = {CascadeType.ALL}) 
+	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY) 
 	@JoinColumn(name = "id_employee") //  Report is the owner class
 	private Employee employee;
 
@@ -51,7 +52,7 @@ public class Report implements Serializable{
 		return serialVersionUID;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -67,7 +68,7 @@ public class Report implements Serializable{
 		return employee;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

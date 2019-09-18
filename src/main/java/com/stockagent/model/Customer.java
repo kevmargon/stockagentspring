@@ -19,7 +19,7 @@ public class Customer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
 	@Column(name = "name")
 	private String name;
@@ -33,14 +33,14 @@ public class Customer implements Serializable {
 	@Column(name = "dni")
 	private String dni;
 	
-	@Column(name = "phonenumber")
+	@Column(name = "phone_number")
 	private String phoneNumber;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "id_direction") // owner
 	private Direction direction;
 	
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List<Order> orders = new ArrayList<>();
 	
 	// CONSTRUCTORS
@@ -78,11 +78,11 @@ public class Customer implements Serializable {
 
 	// GETTERS & SETTERS
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

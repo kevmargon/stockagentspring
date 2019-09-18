@@ -22,12 +22,12 @@ public class Role implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 	@Column(name = "name")
 	private String name;
 
-	// Bi-directional many-to-many association to Role
-	@ManyToMany(mappedBy = "roles") // REV: Lazy??
+	// Many-to-many association to Role
+	@ManyToMany(mappedBy = "roles") 
 	private List<Employee> employees = new ArrayList<>();
 
 	// CONSTRUCTORS
@@ -41,7 +41,7 @@ public class Role implements Serializable {
 
 	// GETTERS & SETTERS
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -53,7 +53,7 @@ public class Role implements Serializable {
 		return employees;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

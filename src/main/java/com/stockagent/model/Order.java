@@ -29,10 +29,8 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
-//	Alan: Como ser�a el campo Date vs DateTime(Para no usar now) en la base de datos traido desde Java 
-//	Capturar fecha en "instant"
 	@Column(name = "sell_date")
 	private Date sellDate;
 
@@ -40,7 +38,7 @@ public class Order implements Serializable {
 	private BigDecimal totalPrice;
 
 	@Column(name = "amount")
-	private int amount;
+	private Integer amount;
 	
 	@ManyToMany(mappedBy = "orders")
 	private List<Product> products = new ArrayList<>();
@@ -58,7 +56,7 @@ public class Order implements Serializable {
 	public Order (){
 	}
 
-	public Order(Date sellDate, BigDecimal totalPrice, int amount, Employee employee, Customer customer) {
+	public Order(Date sellDate, BigDecimal totalPrice, Integer amount, Employee employee, Customer customer) {
 		this.sellDate = sellDate;
 		this.totalPrice = totalPrice;
 		this.amount = amount;
@@ -66,7 +64,7 @@ public class Order implements Serializable {
 		this.customer = customer;
 	}
 	
-	public Order(Date sellDate, BigDecimal totalPrice, int amount) {
+	public Order(Date sellDate, BigDecimal totalPrice, Integer amount) {
 		this.sellDate = sellDate;
 		this.totalPrice = totalPrice;
 		this.amount = amount;
@@ -74,11 +72,11 @@ public class Order implements Serializable {
 	
 	// GETTERS & SETTERS
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -98,11 +96,11 @@ public class Order implements Serializable {
 		this.totalPrice = totalPrice;
 	}
 
-	public int getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 
