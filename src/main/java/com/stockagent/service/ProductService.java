@@ -34,11 +34,11 @@ public interface ProductService{
 	void delete(Long id);
 	
 	/**
-	 * Get list of products by manufacturer id
+	 * Get list of products by category id
 	 * @param id
 	 * @return
 	 */
-//	List<Product> findProductByManufacturer(Long id);
+	List<Product> findProductByCategoryId(Long id);
 	
 
 

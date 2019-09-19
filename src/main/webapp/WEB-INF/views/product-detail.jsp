@@ -1,66 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="icon" type="image/ico" href="${pageContext.request.contextPath}/img/icon.ico">
 <title>Product Edition | StockAgent</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">StockAgent</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/products">Product</a>
-          	<span class="sr-only">(current)</span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/categories">Category</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/directions">Direction</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+	<!-- Navigation -->
+	<c:set var = "navigation" scope = "session" value = "product"/>
+  	<jsp:include page="header.jsp"></jsp:include>
 
-	<div class="pt-5 container">
-		<h2>Product ${product.id} Details</h2>
-		<hr>
+	<div style="" class="container">
+		<div class="row bg-light grey"
+			style="padding: 20px; margin-top: 20px;">
+			<div style="height: 40%; width: 40%;" class="img-fluid">
+				<!-- Nomeclatura para los nombres de las imagenes "ManufacturerName"-"ProductName".jpg Ejemplo: Adidas-Superstar.jpg-->
+				<img style="width: 100%; height: 100%;"
+					src="${pageContext.request.contextPath}/img/${product.manufacturer}-${product.name}.jpg" />
+			</div>
 
+			<div class="col-xs-5"
+				style="border: 0px solid gray; margin: auto; padding-left: 20px;">
+				<!-- Datos del vendedor y titulo del producto -->
+				<h3>${product.name}</h3>
+				<h5 style="color: #337ab7">
+					Manufacturer <a href="#">${product.manufacturer}</a>
+				</h5>
 
-		<table class="table table-striped table-bordered">
+				<!-- Precios -->
+				<h6 class="title-price">
+					<small>PRICE</small>
+				</h6>
+				<h4 style="margin-top: 0px;">EUR ${product.price}</h4>
 
-			<tr class="thead-dark">
-				<th>Name</th>
-				<th>Price</th>
-				<th>Amount</th>
-				<th>Manufacturer</th>
-				<th>Category</th>
-			</tr>
+				<!-- Detalles especificos del producto -->
 
-			<tr>
-				<td>${product.name}</td>
-				<td>${product.price}</td>
-				<td>${product.amount}</td>
-				<td>${product.manufacturer}</td>
-				<td>${product.getCategory().name}</td>
-			</tr>
-		</table>
-		<a class="btn btn-info"
-		href="${pageContext.request.contextPath}/products">Back list</a>
+				<div class="section" style="padding-bottom: 5px;">
+					<h6 class="title-price">
+						<small>CATEGORY</small>
+					</h6>
+					<h4 style="margin-top: 0px;">${product.category.name}</h4>
+				</div>
+				<div class="section" style="padding-bottom: 20px;">
+					<h6 class="title-attr">
+						<small>QUANTITY</small>
+					</h6>
+					<div>
+						<div class="btn-minus">
+							<span class="glyphicon glyphicon-minus"></span>
+						</div>
+						<input id="amount" value="${product.amount}" />
+						<div class="btn-plus">
+							<span class="glyphicon glyphicon-plus"></span>
+						</div>
+					</div>
+					<hr>
+					<div class="section" style="padding-bottom: 20px;">
+						<button style="marign-left: 200px;" class="btn btn-primary">
+							<span style="text-align: center;"></span>Send
+						</button>
+					</div>
+				</div>
+
+				<!-- Botones de compra -->
+
+			</div>
+		</div>
 	</div>
-
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script

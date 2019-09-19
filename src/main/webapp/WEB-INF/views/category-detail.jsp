@@ -1,37 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="icon" type="image/ico" href="${pageContext.request.contextPath}/img/icon.ico">
 <title>Category Edition | StockAgent</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-		<div class="container">
-			<a class="navbar-brand" href="#">StockAgent</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/products">Product</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="${pageContext.request.contextPath}/categories">Category</a>
-						<span class="sr-only">(current)</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/directions">Direction</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+		<c:set var = "navigation" scope = "session" value = "category"/>
+  	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="pt-5 container">
 		<h2>Category ${category.id}: ${category.name} </h2>
@@ -40,7 +22,7 @@
 
 		<table class="table table-striped table-bordered">
 
-			<tr class="thead-dark">
+			<tr class="thead-gd light">
 				<th>Listado de productos de "${category.name}"</th>
 
 			</tr>

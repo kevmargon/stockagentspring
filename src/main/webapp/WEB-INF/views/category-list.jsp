@@ -4,35 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="icon" type="image/ico" href="${pageContext.request.contextPath}/img/icon.ico">
 <title>Category List | StockAgent</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">StockAgent</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/products">Product</a>
-          	
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/categories">Category</a>
-            <span class="sr-only">(current)</span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/directions">Direction</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+	<c:set var = "navigation" scope = "session" value = "category"/>
+  	<jsp:include page="header.jsp"></jsp:include>
 	
 	<div class = "pt-5 container">
 		
@@ -60,7 +41,7 @@
 		</p>
 	
 		<table class = "table table-striped table-bordered">
-			<tr class = "thead-dark">
+			<tr class = "thead-gd light">
 				<th>Name</th>
 				<th>Products</th>
 				<th>Actions</th>
@@ -73,20 +54,22 @@
 					<td><c:forEach items = "${category.products}"  var="product"> 
 					<span class = "badge badge-light" ><a href = "${pageContext.request.contextPath}/products/${product.id}">${product.name}</a></span></c:forEach> </td>
 					<td> 
-						<a class="btn btn-info" href = "${pageContext.request.contextPath}/categories/${category.id}/detail">Details</a>
-						<a class="btn btn-info" href = "${pageContext.request.contextPath}/categories/${category.id}">Edit</a> 
-						<a class="btn btn-danger" href = "${pageContext.request.contextPath}/categories/${category.id}/delete">Delete</a> 
-						<a class="btn btn-danger" href = "${pageContext.request.contextPath}/categories/${category.id}/deleteAll">DeleteALL</a>
+						<a  href = "${pageContext.request.contextPath}/categories/${category.id}/detail"><span class="fa fa-eye" style ="font-size:24px" title="Show details"></span></a>
+						&nbsp;|&nbsp;
+						<a  href = "${pageContext.request.contextPath}/categories/${category.id}"><span class="fa fa-edit" style = "font-size:24px" title="Edit element"></span></a> 
+						&nbsp;|&nbsp;
+						<a  href = "${pageContext.request.contextPath}/categories/${category.id}/delete"><span class="fa fa-trash"  style = "font-size:24px" title="Delete element"></span></a> 
+						&nbsp;|&nbsp;
+						<a  href = "${pageContext.request.contextPath}/categories/${category.id}/deleteAll"><span class="fa fa-trash"  style = "font-size:24px;color:red" title="Delete element and associated children"></span></a>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
 		
-		<p>	* The option Delete, deletes only the category and the associated products will set their category field to null.</p>
-		<p>	* The option DeleteALL, deletes the category and all the products from that category.</p>
-	</div>
+		</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 </body>
 </html>

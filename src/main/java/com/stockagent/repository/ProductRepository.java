@@ -19,6 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 * @return List <Product>
 	 */
 	@Query(value = "SELECT p FROM Product p INNER JOIN FETCH p.category c WHERE c.id = :id") // , nativeQuery = true
+	 //"SELECT p FROM Product p WHERE p.category.id =: id";
 	List<Product> findByCategoryId(@Param("id") Long id);
 
 	/**

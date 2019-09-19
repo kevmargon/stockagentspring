@@ -2,6 +2,7 @@ package com.stockagent.controller;
 import java.util.Optional;
 
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stockagent.model.Category;
 import com.stockagent.model.Product;
 import com.stockagent.repository.CategoryRepository;
 import com.stockagent.repository.SupplierRepository;
+import com.stockagent.service.CategoryService;
 import com.stockagent.service.ProductService;
 
 @Controller
@@ -24,6 +27,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CategoryService categoryService;
 	@Autowired
 	private CategoryRepository categoryRepository;
 	@Autowired
@@ -54,7 +59,30 @@ public class ProductController {
 		notificationLabel = null;
 		return mav;
 	}
-
+	////REV : ARREGLAR METODO, NO ESTÁ FUNCIONANDO
+	@GetMapping("/categories/{id}/productslist")
+	public ModelAndView getProductsByCategory(@PathVariable Long id, @ModelAttribute("nameCat") String nameCat) {
+		log.debug("request to get Products");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("product-list"); //products-by-category-list
+		Category existingCategory = null;
+		Optional<Category> existingCategoryWrap = categoryService.findOne(id);
+		if (existingCategoryWrap.isPresent()) {
+			existingCategory = existingCategoryWrap.get();
+			nameCat = existingCategory.getName();
+		}
+		//mav.addObject("category", existingCategory);
+		mav.addObject("nameCat", nameCat);
+		mav.addObject("products", productService.findProductByCategoryId(id));
+		mav.addObject("categories", categoryRepository.findAll());
+		mav.addObject("notification", notification );
+		mav.addObject("notificationLabel", notificationLabel );
+		notification = null;
+		notificationLabel = null;
+		return mav;
+	}
+	
+	
 	@GetMapping("/products/empty")
 	public ModelAndView createProduct() {
 		log.debug("request to empty product form");
@@ -79,9 +107,6 @@ public class ProductController {
 	 */
 	@GetMapping("/products/{id}")
 	public ModelAndView getProduct(@PathVariable Long id) {
-		
-		
-		
 		log.debug("request to get Product : {}", id);
 		Optional<Product> product = productService.findOne(id);
 

@@ -96,12 +96,13 @@ public class LogInController{
 	}*/
 	
 	@PostMapping("/login")
-	public String findUser(@ModelAttribute("employee") Employee employee) {
-		log.debug("request to check User (employee) : {}", employee);
-		System.out.println("=================================== HOLA BILLY1");
+	public String findUser(@ModelAttribute("user") String user, @ModelAttribute("pass") String pass ) {
+		log.debug("request to check User (employee) : {}", user, pass);
+		System.out.println(user);
+		System.out.println(pass);
 			
 		try {
-			boolean result= loginService.userConnection (loginService.encriptsha1(employee.getUser()), loginService.encriptsha1(employee.getPass()));
+			boolean result= loginService.userConnection (loginService.encriptsha1(user), loginService.encriptsha1(pass));
 //			boolean result= loginService.userConnection (loginService.encriptsha1("stromae"), loginService.encriptsha1("1234"));
 			if (result == false) {
 				System.out.println("=================================== HOLA BILLY2");
@@ -110,7 +111,7 @@ public class LogInController{
 				return "redirect:/login";
 				
 			} else if (result) {
-				notification = "Bienvenido"+employee.getName();///????????????
+				//notification = "Bienvenido"+employee.getName();///????????????
 				notificationLabel = "success";
 				return "redirect:/products";
 			}

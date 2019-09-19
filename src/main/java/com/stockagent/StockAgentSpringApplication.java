@@ -154,6 +154,17 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		categoryRepository.save(cat3);
 		productRepository.save(pro3);
 		
+		
+		Category cat4 = categoryRepository.save(new Category("Calzado"));		
+		Product pro4 = new Product("Superstar",new BigDecimal(50),25,"Adidas");
+		pro4.setCategory(cat4);
+		
+		pro4.getSuppliers().add(sup3);
+		sup3.getProducts().add(pro4);
+		supplierRepository.save(sup3);
+		categoryRepository.save(cat4);
+		productRepository.save(pro4);
+		
 
 		//Foreign key declaration & save Employee - Direction // Employee - Report // Employee - Position
 		Employee emp1 = new Employee(loginserviceimpl.encriptsha1("stromae"),loginserviceimpl.encriptsha1("1234"),"Francisco","Celada","Prado","75213521C","655232156");

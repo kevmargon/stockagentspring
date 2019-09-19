@@ -47,16 +47,13 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Product> findProductByCategoryId(Long id) {
+		  log.debug("Request to find the list of Products from a Category : {}", id);
+  		return productRepository.findByCategoryId(id);
+	}
 
-//	@Override
-//	@Query("SELECT p FROM Product p fetch join p.manufacturer m WHERE m.id = :id ")
-//	//public List<Product> findProductByManufacturer (Long id) {
-//		
-//				
-//		return new ArrayList<Product>();
-//	} 
-//}
-	
+
 
 
 }
