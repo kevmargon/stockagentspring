@@ -1,6 +1,7 @@
 package com.stockagent.controller;
 import java.util.Optional;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,19 +36,13 @@ public class ProductController {
 	public String notification = null; 
 	public String notificationLabel = null; 
 	
-	
-	
-	/**
-	 * Application enter point. URL will enter here and redirect the corresponding method.
-	 * 
-	 * @return
-	 */
-	@GetMapping("/")
+
+	@GetMapping("/products")
 	public String root() {
-		return "redirect:/products";
+		return "redirect:/products/list";
 	}
 	
-	@GetMapping("/products")
+	@GetMapping("/products/list")
 	public ModelAndView getAllProducts() {
 		log.debug("request to get Products");
 		ModelAndView mav = new ModelAndView();

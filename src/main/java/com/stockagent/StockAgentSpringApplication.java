@@ -1,14 +1,8 @@
 package com.stockagent;
 
 import java.math.BigDecimal;
-
-
-
-
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,56 +14,62 @@ import com.stockagent.model.Customer;
 import com.stockagent.model.Direction;
 import com.stockagent.model.Employee;
 import com.stockagent.model.Order;
-import com.stockagent.model.Role;
 import com.stockagent.model.Product;
 import com.stockagent.model.Report;
+import com.stockagent.model.Role;
 import com.stockagent.model.Supplier;
 import com.stockagent.repository.CategoryRepository;
 import com.stockagent.repository.CustomerRepository;
 import com.stockagent.repository.DirectionRepository;
 import com.stockagent.repository.EmployeeRepository;
 import com.stockagent.repository.OrderRepository;
-import com.stockagent.repository.RoleRepository;
 import com.stockagent.repository.ProductRepository;
 import com.stockagent.repository.ReportRepository;
+import com.stockagent.repository.RoleRepository;
 import com.stockagent.repository.SupplierRepository;
+import com.stockagent.service.LogInServiceImpl;
 
 @SpringBootApplication
 public class StockAgentSpringApplication implements CommandLineRunner {
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
+
 	@Autowired
 	private CustomerRepository customerRepository;
 
 	@Autowired
 	private DirectionRepository directionRepository;
-	
+
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
+
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	@Autowired
 	private RoleRepository roleRepository;
-	
+
 	@Autowired
 	private ProductRepository productRepository;
-	
+
 	@Autowired
 	private ReportRepository reportRepository;
-	
+
 	@Autowired
 	private SupplierRepository supplierRepository;
 	
-	//Employee employee = null;
-	
+
+	@Autowired
+	private LogInServiceImpl loginserviceimpl;
+
+
+	// Employee employee = null;
+
 	public static void main(String[] args) {
 		SpringApplication.run(StockAgentSpringApplication.class, args);
 	}
-	
+
 	@Override
 	public void run(String... args) throws Exception{
 		
@@ -156,7 +156,7 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		
 
 		//Foreign key declaration & save Employee - Direction // Employee - Report // Employee - Position
-		Employee emp1 = new Employee("stromae","1234","Francisco","Celada","Prado","75213521C","655232156");
+		Employee emp1 = new Employee(loginserviceimpl.encriptsha1("stromae"),loginserviceimpl.encriptsha1("1234"),"Francisco","Celada","Prado","75213521C","655232156");
 		Direction dir4 = new Direction("Avenida Independencia",22,24001,"León","León","Spain");
 		
 		emp1.setDirection(dir4);
@@ -168,7 +168,7 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		reportRepository.save(rep1);
 		
 		
-		Employee emp2 = new Employee("sadia","4321","Ismael","Rodríguez","de la Moral","76521223Y","685954213");
+		Employee emp2 = new Employee(loginserviceimpl.encriptsha1("sadia"),loginserviceimpl.encriptsha1("4321"),"Ismael","Rodríguez","de la Moral","76521223Y","685954213");
 		Direction dir5 = new Direction("Calle Teredia",31,24001,"León","León","Spain");
 		
 
@@ -179,7 +179,7 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		employeeRepository.save(emp2);
 		reportRepository.save(rep2);
 
-		Employee emp3 = new Employee("azulen","2314","Carmen","Fuentes","Pérez","75213235D","685200121");
+		Employee emp3 = new Employee(loginserviceimpl.encriptsha1("azulen"),loginserviceimpl.encriptsha1("2314"),"Carmen","Fuentes","Pérez","75213235D","685200121");
 		Direction dir6 = new Direction("Avenida Sagrada",1,24001,"León","León","Spain");
 		
 
@@ -214,60 +214,42 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		employeeRepository.save(emp3);
 		
 		//Foreign key declaration & save Employee - Role
-		Role rol1 = new Role("Admin");
+		Role rol1 = new Role("Do All Master/ Admin");
 		
 		rol1.getEmployees().add(emp1);
 		emp1.getRoles().add(rol1);
 		roleRepository.save(rol1);
 		employeeRepository.save(emp1);
 		
-		Role rol2 = new Role("Moderator");
+		Role rol2 = new Role("Seller Default/ User");
 		rol2.getEmployees().add(emp2);
 		emp2.getRoles().add(rol2);
 		roleRepository.save(rol2);
 		employeeRepository.save(emp2);
 
-		Role rol3 = new Role("User");
-		rol3.getEmployees().add(emp3);
-		emp3.getRoles().add(rol3);
-		roleRepository.save(rol3);
+		rol2.getEmployees().add(emp3);
+		emp3.getRoles().add(rol2);
+		roleRepository.save(rol2);
 		employeeRepository.save(emp3);
-
 		
-
+		String tiposRole [] = {"See List Products", "See Detail Product", "Add Product","Delete Product", "Update Product",
+				"See List Suppliers","Add Supplier", "See Detail Supplier", "Delete Supplier", "Update Supplier",
+				"See List Categories", "See Detail Category", "Add Category", "Delete Category", "Update Category",
+				"Add Order","See List Orders", "See Detail Order", "Delete Order", "Update Order", 
+				"Add Report", "See List Reports", "See Detail Report", "Delete Report", "Update Report", 
+				"See Own Profile Employee  Detail","See List Employees","Add Employee", "See Detail Employee", "Delete Employee" ,"Update Employee" };
 		
-
+		for (int i =0; i == tiposRole.length; i++) {
+			Role rol = new Role();
+			rol.setName(tiposRole[i]);
+			roleRepository.save(rol);
+		}
+		
 	
-		//The product must be detached from the category before deleting such, if the product is wanted to stay in the database.
-		//REV-M --OJO: Habría que desvincular el producto si se quiere eliminar la categoria como sigue
-//		List<Product> prods = new ArrayList<>();
-//		prods = cat1.getProducts();
-//		
-//		for(Product p: prods) {
-//			cat1.removeProduct3 (p);
-//			productRepository.save(p);
-//			categoryRepository.save(cat1);
-//		}
-//		
-//		for(Product p: prods) {
-//			p.setCategory (null);
-//			productRepository.save(p);
-//		}
-////		cat1.removeProduct (pro1); // solo desvincularia pro1
-//		
-//		categoryRepository.delete(cat1);
+
 		
-		
-//		cat1.removeProduct (pro1);
-//		productRepository.save(pro1);
-//		categoryRepository.save(cat1);
-//		productRepository.delete(pro1);
 
 
 	}
-	
-	
-	
-	
 
 }
