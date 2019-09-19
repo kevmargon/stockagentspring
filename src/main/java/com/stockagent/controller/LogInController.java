@@ -41,7 +41,7 @@ public class LogInController{
 	}
 	
 	@GetMapping("/login")
-	public ModelAndView getAllProducts() {
+	public ModelAndView getLogin() {
 		log.debug("request to get log in");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("login-form");
