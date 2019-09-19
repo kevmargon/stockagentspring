@@ -98,12 +98,13 @@ public class LogInController{
 	@PostMapping("/login")
 	public String findUser(@ModelAttribute("employee") Employee employee) {
 		log.debug("request to check User (employee) : {}", employee);
-		
-		
+		System.out.println("=================================== HOLA BILLY1");
+			
 		try {
 			boolean result= loginService.userConnection (loginService.encriptsha1(employee.getUser()), loginService.encriptsha1(employee.getPass()));
+//			boolean result= loginService.userConnection (loginService.encriptsha1("stromae"), loginService.encriptsha1("1234"));
 			if (result == false) {
-				
+				System.out.println("=================================== HOLA BILLY2");
 				notification = "Error. User name or password are incorrect.";
 				notificationLabel = "success";
 				return "redirect:/login";
@@ -115,7 +116,9 @@ public class LogInController{
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			return "redirect:/login";
 		}
+		return "redirect:/login";
 	}
 
 

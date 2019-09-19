@@ -24,17 +24,17 @@
       <img src="${pageContext.request.contextPath}/img/logo.png" style="width:50%; height:50%;" id="icon" alt="User Icon" />
     </div>
 
-  <%--   <!-- Login Form -->
-    <form action="${pageContext.request.contextPath}/login>
-      <input type="text" id="login" class="fadeIn second" name="user" placeholder="login" required>
-      <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password" required>
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <!-- Login Form -->
+    <form action="${pageContext.request.contextPath}/login" method = "POST"> <!-- ModelAttribute = "employee" -->
+      <input type="text" id="login" class="fadeIn second" name="user" placeholder="login" required />
+      <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password" required />
+      <input type="submit" class="fadeIn fourth" value="Log In" />
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <a class="underlineHover" href="#">Forgot Password?</a>
-    </div> --%>
+    </div>
 
   </div>
 </div>

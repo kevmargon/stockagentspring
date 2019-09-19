@@ -170,7 +170,8 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		
 		Employee emp2 = new Employee(loginserviceimpl.encriptsha1("sadia"),loginserviceimpl.encriptsha1("4321"),"Ismael","Rodríguez","de la Moral","76521223Y","685954213");
 		Direction dir5 = new Direction("Calle Teredia",31,24001,"León","León","Spain");
-		
+		Employee emp8 = new Employee(loginserviceimpl.encriptsha1("raton"),loginserviceimpl.encriptsha1("1234"));
+		employeeRepository.save(emp8);
 
 		emp2.setDirection(dir5);
 		Report rep2 = reportRepository.save(new Report("Esto es una segunda prueba de informe",report.getDateTime()));

@@ -79,6 +79,9 @@ public class ProductController {
 	 */
 	@GetMapping("/products/{id}")
 	public ModelAndView getProduct(@PathVariable Long id) {
+		
+		
+		
 		log.debug("request to get Product : {}", id);
 		Optional<Product> product = productService.findOne(id);
 
