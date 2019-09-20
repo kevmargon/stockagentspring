@@ -52,28 +52,38 @@
 					<h6 class="title-attr">
 						<small>QUANTITY</small>
 					</h6>
+			<form:form action = "${pageContext.request.contextPath}/products" method="POST" modelAttribute = "product">
 					<div>
 						<div class="btn-minus">
 							<span class="glyphicon glyphicon-minus"></span>
 						</div>
-						<input id="amount" value="${product.amount}" />
+					
+						<form:input class = "form-control" path="amount"/>
 						<div class="btn-plus">
 							<span class="glyphicon glyphicon-plus"></span>
 						</div>
 					</div>
 					<hr>
-					<div class="section" style="padding-bottom: 20px;">
-						<button style="marign-left: 200px;" class="btn btn-primary">
+					<div class="section" style="padding-bottom: 20px;">					
+						<button style="marign-left: 200px;" class="btn btn-primary" type = "submit">
 							<span style="text-align: center;"></span>Send
 						</button>
 					</div>
+				<form:hidden path="id"/>
+				<form:hidden path="name"/>
+				<form:hidden path="price"/>
+				<form:hidden path="manufacturer"/>
+				<form:hidden path="category.id"/>
+			</form:form>
 				</div>
-
+				
 				<!-- Botones de compra -->
 
 			</div>
 		</div>
+		
 	</div>
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
