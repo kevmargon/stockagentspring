@@ -53,6 +53,7 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("product-list");
 		mav.addObject("products", productService.findAll());
+		mav.addObject("categories", categoryService.findAll());
 		mav.addObject("notification", notification );
 		mav.addObject("notificationLabel", notificationLabel );
 		notification = null;
