@@ -84,13 +84,13 @@
 					<td>${product.price}</td>
 					<td>${product.amount}</td>
 					<td>${product.manufacturer}</td>
-					<td><a href="${pageContext.request.contextPath}/categories/${product.category.id}">${product.category.name}</a>
+					<td><span class = "badge badge-light" ><a href="${pageContext.request.contextPath}/categories/${product.category.id}">${product.category.name}</a></span>
 					</td>
 					<td><a href="${pageContext.request.contextPath}/products/${product.id}/detail"><span class="fa fa-eye" style ="font-size:24px" title="Show details"></span></a>
 						&nbsp;|&nbsp;
 						<a href="${pageContext.request.contextPath}/products/${product.id}"><span class="fa fa-edit" style = "font-size:24px" title="Edit element"></span></a>
 						&nbsp;|&nbsp;
-						<a href="${pageContext.request.contextPath}/products/${product.id}/delete"><span class="fa fa-trash"  style = "font-size:24px" title="Delete element"></span></a>
+						<a href="${pageContext.request.contextPath}/products/${product.id}/delete" onclick="return confirm('${product.name} will be removed');"><span class="fa fa-trash"  style = "font-size:24px" title="Delete element"></span></a>
 					</td>
 				</tr>
 			</c:forEach>
