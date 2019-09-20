@@ -53,6 +53,7 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("product-list");
 		mav.addObject("products", productService.findAll());
+		mav.addObject("categories", categoryService.findAll());
 		mav.addObject("notification", notification );
 		mav.addObject("notificationLabel", notificationLabel );
 		notification = null;
@@ -197,7 +198,8 @@ public class ProductController {
 //			}
 				
 				
-			if(productService.save(existingProduct)!=null) {;
+			if(productService.save(existingProduct)!=null) 
+			{
 				 notification = "The product has been updated succesfully!";
 				 notificationLabel = "success";
 				
