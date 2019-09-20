@@ -34,12 +34,9 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<!-- <p:menuitem>
-                <h:graphicImage value="/imgs/Slidenew1.png" style="margin-left: 10px; position: fixed !important;  position: relative;" width="50px" height="70px"></h:graphicImage>
-            </p:menuitem> -->
 	<a class="navbar-brand" href="#"><img
-		src="${pageContext.request.contextPath}/img/logo.png"
-		style="margin-left: 10px; position: relative;" width="50px"
+		src="${pageContext.request.contextPath}/img/logoheader.png"
+		style="margin-left: 10px; position: relative;" width="70px"
 		height="50px">&nbsp;StockAgent</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
