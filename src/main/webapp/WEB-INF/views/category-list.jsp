@@ -57,9 +57,9 @@
 						&nbsp;|&nbsp;
 						<a  href = "${pageContext.request.contextPath}/categories/${category.id}"><span class="fa fa-edit" style = "font-size:24px" title="Edit element"></span></a> 
 						&nbsp;|&nbsp;
-						<a  href = "${pageContext.request.contextPath}/categories/${category.id}/delete"><span class="fa fa-trash"  style = "font-size:24px" title="Delete element"></span></a> 
+						<a  href = "${pageContext.request.contextPath}/categories/${category.id}/delete" onclick="return confirm('${category.name} will be removed');"><span class="fa fa-trash"  style = "font-size:24px" title="Delete element"></span></a> 
 						&nbsp;|&nbsp;
-						<a  href = "${pageContext.request.contextPath}/categories/${category.id}/deleteAll"><span class="fa fa-trash"  style = "font-size:24px;color:red" title="Delete element and associated children"></span></a>
+						<a  href = "${pageContext.request.contextPath}/categories/${category.id}/deleteAll" onclick="return confirm('${category.name} and all its associated products will be removed');"><span class="fa fa-trash"  style = "font-size:24px;color:red" title="Delete element and associated children"></span></a>
 					</td>
 				</tr>
 			</c:forEach>
