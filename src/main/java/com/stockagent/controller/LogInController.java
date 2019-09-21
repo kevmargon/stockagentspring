@@ -42,12 +42,13 @@ public class LogInController{
 	
 	@GetMapping("/login")
 	public ModelAndView getLogin() {
+		String user = null;
+		String pass = null;
 		log.debug("request to get log in");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("login-form");
-		//Optional<Employee> employee;// = new Employee();
-		//mav.addObject("employee", employee.get());
-		mav.addObject("employee", new Employee());
+		mav.addObject("user", user);
+		mav.addObject("pass", pass);		
 		mav.addObject("notification", notification );
 		mav.addObject("notificationLabel", notificationLabel );
 		notification = null;
@@ -55,45 +56,6 @@ public class LogInController{
 		return mav;
 	}
 	
-	/*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-
-		PrintWriter out = response.getWriter();
-		String usuario = request.getParameter("usuario");
-		String contra = request.getParameter("contra");
-
-		boolean isError = false;
-		if (usuario == null || usuario.length() == 0) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ServletError");
-			dispatcher.forward(request, response);
-			// out.println("<b>Nombre</b> iválido");
-			isError = true;
-			return;
-
-		}
-		if (contra == null || contra.length() == 0) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ServletError");
-			dispatcher.forward(request, response);
-			// out.println("<br><b>Apellido</b> iválido");
-			isError = true;
-			return;
-
-		}
-		if (!isError) {
-			try {
-				boolean res = Metodos.validaCampos(usuario, contra);
-				if (res) {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/ServletSuccUser");
-					dispatcher.forward(request, response);
-				} else {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/ServletErrUser");
-					dispatcher.forward(request, response);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}*/
 	
 	@PostMapping("/login")
 	public String findUser(@ModelAttribute("user") String user, @ModelAttribute("pass") String pass ) {
@@ -121,6 +83,4 @@ public class LogInController{
 		}
 		return "redirect:/login";
 	}
-
-
 }

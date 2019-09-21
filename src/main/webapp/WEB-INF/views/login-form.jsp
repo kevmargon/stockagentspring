@@ -23,7 +23,7 @@
     </div>
 
     <!-- Login Form -->
-    <form action="${pageContext.request.contextPath}/login" method = "POST"> <!-- ModelAttribute = "employee" -->
+    <form action="${pageContext.request.contextPath}/login" method = "POST">
       <input type="text" id="login" class="fadeIn second" name="user" placeholder="login" required />
       <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password" required />
       <input type="submit" class="fadeIn fourth" value="Log In" />
