@@ -58,7 +58,7 @@
 					
 					<td><c:forEach items = "${category.products}"  var="product"> 
 					<span class = "badge badge-light" ><a href = "${pageContext.request.contextPath}/products/${product.id}">${product.name}</a></span></c:forEach> </td>
-					<td> 
+					<td style="min-width:200px;"> 
 						<a  href = "${pageContext.request.contextPath}/categories/${category.id}/detail"><span class="fa fa-eye" style ="font-size:24px" title="Show details"></span></a>
 						&nbsp;|&nbsp;
 						<a  href = "${pageContext.request.contextPath}/categories/${category.id}"><span class="fa fa-edit" style = "font-size:24px" title="Edit element"></span></a> 

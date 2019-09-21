@@ -86,7 +86,7 @@
 					<td>${product.manufacturer}</td>
 					<td><span class = "badge badge-light" ><a href="${pageContext.request.contextPath}/categories/${product.category.id}">${product.category.name}</a></span>
 					</td>
-					<td><a href="${pageContext.request.contextPath}/products/${product.id}/detail"><span class="fa fa-eye" style ="font-size:24px" title="Show details"></span></a>
+					<td style="min-width:200px;"> <a href="${pageContext.request.contextPath}/products/${product.id}/detail"><span class="fa fa-eye" style ="font-size:24px" title="Show details"></span></a>
 						&nbsp;|&nbsp;
 						<a href="${pageContext.request.contextPath}/products/${product.id}"><span class="fa fa-edit" style = "font-size:24px" title="Edit element"></span></a>
 						&nbsp;|&nbsp;
