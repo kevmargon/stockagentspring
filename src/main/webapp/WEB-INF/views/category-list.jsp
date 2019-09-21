@@ -19,6 +19,12 @@
 		<h1>Categories Directory</h1>
 		<hr/>
 		
+		<c:if test="${nameCat.isEmpty() || nameCat == null}">
+			<h3 style="text-align: center;">Category List</h3>
+			<c:set var="n" value="1"/>
+			<hr />
+		</c:if>
+		
 		<c:choose>
 			<c:when test="${notificationLabel=='success'}">
 				<div class="alert alert-success" role="alert">

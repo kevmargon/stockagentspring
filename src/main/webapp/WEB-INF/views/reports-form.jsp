@@ -22,16 +22,16 @@
 
 		<div style="margin: auto;" class="row">
 			<div style="margin:auto; padding:20px;" class="col-md-5 bg-light text-dark">
-				<form action="${pageContext.request.contextPath}/AdminCategoryServ" method="POST">
+				<form action="${pageContext.request.contextPath}/reports" method="POST">
 					<div class="form-group">
-						<textarea class="form-control" id="name" placeholder="Explain the situation" rows=10></textarea>
+						<textarea class="form-control" name="description" id="description" placeholder="Explain the situation" rows=10></textarea>
 					</div>
 
-					<input type="hidden" name="id" value="${category.id}" />
+					<input type="hidden" name="id" value="${report.id}" />
 
 					<button type="submit" class="btn btn-primary">Send</button>
 				</form>
-				<a href="${pageContext.request.contextPath}/AdminCategoryServ?action=LIST">Back	to List</a>
+				<a href="${pageContext.request.contextPath}/reports">Back	to List</a>
 			</div>
 		</div>
 		

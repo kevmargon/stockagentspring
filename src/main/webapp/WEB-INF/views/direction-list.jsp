@@ -18,7 +18,17 @@
 
 		<h1>Directions Directory</h1>
 		<hr />
+		
+		<c:if test="${nameDir.isEmpty() || nameDir == null}">
+			<h3 style="text-align: center;">Directory List</h3>
+			<c:set var="n" value="1"/>
+			<hr />
+		</c:if>
 
+		<c:if test="${n!=1}">
+			<h3 style="text-align: center;">Employee ${nameEmp}. Reports</h3>
+			<hr />
+		</c:if>
 		<c:choose>
 			<c:when test="${notificationLabel=='success'}">
 				<div class="alert alert-success" role="alert">
