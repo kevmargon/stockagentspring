@@ -1,33 +1,34 @@
 package com.stockagent.controller;
 
 import java.util.List;
-
 import java.util.Optional;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.stockagent.model.Direction;
 import com.stockagent.model.Category;
+import com.stockagent.model.Direction;
 import com.stockagent.model.Product;
-import com.stockagent.repository.DirectionRepository;
 import com.stockagent.repository.CategoryRepository;
+import com.stockagent.repository.DirectionRepository;
 import com.stockagent.repository.ProductRepository;
 import com.stockagent.service.CategoryService;
+import com.stockagent.service.ProductService;
 
 @Controller
 public class CategoryController {
 //	Object Logger for logging (recording) messages for easier actions and errors tracking
 	private final Logger log = LoggerFactory.getLogger(CategoryController.class);
+	
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired
 	private CategoryService categoryService;
@@ -124,20 +125,14 @@ public class CategoryController {
 	public ModelAndView seeProduct(@PathVariable Long id) {
 		log.debug("request to get Category : {}", id);
 		Optional<Category> category = categoryService.findOne(id);
-
 		ModelAndView mav = new ModelAndView();
-		if (category.isPresent()) {
-			mav.setViewName("category-detail");
-			mav.addObject("category", category.get());
-			notification = null;
-			notificationLabel = null;
-		} else {
-			mav.setViewName("category-list");
-			mav.addObject("message", "Category not found");
-			notification = null;
-			notificationLabel = null;
-		}
-
+		mav.setViewName("category-detail"); //products-by-category-list
+		mav.addObject("category", category.get());
+		mav.addObject("products", productService.findProductByCategoryId(id));
+		mav.addObject("notification", notification );
+		mav.addObject("notificationLabel", notificationLabel );
+		notification = null;
+		notificationLabel = null;
 		return mav;
 	}
 	

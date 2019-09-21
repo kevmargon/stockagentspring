@@ -21,6 +21,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT p FROM Product p INNER JOIN FETCH p.category c WHERE c.id = :id") // , nativeQuery = true
 	 //"SELECT p FROM Product p WHERE p.category.id =: id";
 	List<Product> findByCategoryId(@Param("id") Long id);
+	
+	@Query(value = "SELECT p FROM Product p WHERE p.name LIKE %:name%")
+	List<Product> searchProductByName(@Param("name") String name);
 
 	/**
 	 * ADDICIONAL JPA method /findBySupplierId: . Searches and selects the list of

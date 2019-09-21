@@ -79,7 +79,7 @@
 			</tr>
 
 			<c:forEach items="${products}" var="product">
-				<tr>
+				<tr class="thead-gd light">
 					<td>${product.name}</td>
 					<td>${product.price}</td>
 					<td>${product.amount}</td>

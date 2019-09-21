@@ -60,7 +60,7 @@ public class ProductController {
 		notificationLabel = null;
 		return mav;
 	}
-	////REV : ARREGLAR METODO, NO ESTÁ FUNCIONANDO
+	
 	@GetMapping("/categories/{id}/productslist")
 	public ModelAndView getProductsByCategory(@PathVariable Long id, @ModelAttribute("nameCat") String nameCat) {
 		log.debug("request to get Products");

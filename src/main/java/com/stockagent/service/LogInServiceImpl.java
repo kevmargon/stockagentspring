@@ -17,18 +17,16 @@ import com.stockagent.repository.EmployeeRepository;
 @Service
 public class LogInServiceImpl implements LogInService{
 	@Autowired
-	private static EmployeeRepository employeeRepository;
+	private EmployeeRepository employeeRepository;
 	
 	@Override
 	public boolean userConnection(String user, String pass) {
 		
-		List<Employee> employees= employeeRepository.findByUserAndPass(user,pass);
+		List<Employee> employees= employeeRepository.findByUserAndPass(user, pass);
 //		Searches and selects the employee with a centain user and password and
 //		stores  it in a the list (that will have only one element)
-		System.out.println("=================================== HOLA BILLY");
 		for (Employee e : employees) {
 			Long idLogin = e.getId(); // SET AS SESSION ATTRIBUTE
-			System.out.println("=============="+idLogin);
 			List <Role> roles = e.getRoles();// SET AS SESSION ATTRIBUTE
 //			System.out.print(e.getId() + " === ");
 //			System.out.print(e.getUser() + " === ");
@@ -119,9 +117,5 @@ public class LogInServiceImpl implements LogInService{
 		}
 		return repeted;
 	}
-	
-
-
-
 	
 }

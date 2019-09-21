@@ -53,11 +53,9 @@
 			<li class="nav-item"><a class="nav-link ${active2}"
 				href="${pageContext.request.contextPath}/products">Products</a></li>
 			<li class="nav-item"><a class="nav-link ${active3}"
-				href="${pageContext.request.contextPath}/categories">Categories</a>
-			</li>
+				href="${pageContext.request.contextPath}/categories">Categories</a></li>
 			<li class="nav-item"><a class="nav-link ${active4}"
-				href="${pageContext.request.contextPath}/directions">Directions</a>
-			</li>
+				href="${pageContext.request.contextPath}/directions">Directions</a></li>
 			<li class="nav-item"><a class="nav-link ${active5}"
 				href="${pageContext.request.contextPath}/reports">Reports</a></li>
 			<li class="nav-item"><a class="nav-link ${active6}"
@@ -65,10 +63,8 @@
 			<li class="nav-item"><a class="nav-link ${active7}"
 				href="${pageContext.request.contextPath}/login">Logout</a></li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0" action="" method="POST">
-			<input class="form-control mr-sm-2" type="search"
-				placeholder="Search by Product" aria-label="Search">
-
+		<form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/search" method="POST">
+			<input class="form-control mr-sm-2" name="name" type="search" placeholder="Search by Product" aria-label="Search" required>
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
 	</div>

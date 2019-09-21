@@ -24,11 +24,18 @@
 
 			<tr class="thead-gd light">
 				<th>Listado de productos de "${category.name}"</th>
-
+				<th>Actions</th>
 			</tr>
 
-			<tr>
-				<td>crear un listado de productos (solo nombre con link y acciones de eliminado,etc)</td>
+			<tr class="thead-gd light">
+				<c:forEach items="${products}" var="product">
+					<tr>
+					<td><span style = "font-size: 16px;" class = "badge badge-light"><a href="${pageContext.request.contextPath}/products/${product.id}">${product.name}</a></span></td>
+					<td>
+						<a href="${pageContext.request.contextPath}/products/${product.id}/delete" onclick="return confirm('${product.name} will be removed');"><span class="fa fa-trash"  style = "font-size:24px" title="Delete element"></span></a>
+					</td>
+					</tr>
+			</c:forEach>
 			</tr>
 		</table>
 
