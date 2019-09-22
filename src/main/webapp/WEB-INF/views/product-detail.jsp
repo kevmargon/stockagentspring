@@ -1,22 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="icon" type="image/ico" href="${pageContext.request.contextPath}/img/icon.ico">
+<link rel="icon" type="image/ico"
+	href="${pageContext.request.contextPath}/img/icon.ico">
 <title>Product Edition | StockAgent</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 	<!-- Navigation -->
-	<c:set var = "navigation" scope = "session" value = "product"/>
-  	<jsp:include page="header.jsp"></jsp:include>
-
+	<c:set var="navigation" scope="session" value="product" />
+	<jsp:include page="header.jsp"></jsp:include>
+	
+<!-- Recover session attributes -->
+	<c:set var="idLogin" scope="page" value="${sessionScope.idLogin}" />
+	<c:set var="Login" scope="page" value="${sessionScope.Login}" />
+	<c:set var="allowedall" scope="session" value="${allowedall}" />
+	<c:if test="${Login == true }">
+	
 	<div style="" class="container">
 		<div class="row bg-light grey"
 			style="padding: 20px; margin-top: 20px;">
@@ -52,38 +60,40 @@
 					<h6 class="title-attr">
 						<small>QUANTITY</small>
 					</h6>
-			<form:form action = "${pageContext.request.contextPath}/products" method="POST" modelAttribute = "product">
-					<div>
-						<div class="btn-minus">
-							<span class="glyphicon glyphicon-minus"></span>
-						</div>
-					
-						<form:input class = "form-control" path="amount"/>
-						<div class="btn-plus">
-							<span class="glyphicon glyphicon-plus"></span>
-						</div>
-					</div>
-					<hr>
-					<div class="section" style="padding-bottom: 20px;">					
-						<button style="marign-left: 200px;" class="btn btn-primary" type = "submit">
-							<span style="text-align: center;"></span>Send
-						</button>
-					</div>
-				<form:hidden path="id"/>
-				<form:hidden path="name"/>
-				<form:hidden path="price"/>
-				<form:hidden path="manufacturer"/>
-				<form:hidden path="category.id"/>
-			</form:form>
-				</div>
-				
-				<!-- Botones de compra -->
+					<form:form action="${pageContext.request.contextPath}/products"
+						method="POST" modelAttribute="product">
+						<div>
+							<div class="btn-minus">
+								<span class="glyphicon glyphicon-minus"></span>
+							</div>
 
+							<form:input class="form-control" path="amount" />
+							<div class="btn-plus">
+								<span class="glyphicon glyphicon-plus"></span>
+							</div>
+						</div>
+						<hr>
+						<div class="section" style="padding-bottom: 20px;">
+							<button style="marign-left: 200px;" class="btn btn-primary"
+								type="submit">
+								<span style="text-align: center;"></span>Send
+							</button>
+						</div>
+						<form:hidden path="id" />
+						<form:hidden path="name" />
+						<form:hidden path="price" />
+						<form:hidden path="manufacturer" />
+						<form:hidden path="category.id" />
+					</form:form>
+				</div>
+				<!-- Botones de compra -->
 			</div>
 		</div>
-		
+
 	</div>
 
+	</c:if>
+	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script

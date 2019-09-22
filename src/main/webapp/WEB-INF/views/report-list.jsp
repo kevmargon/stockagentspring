@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page session="true"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,6 +17,13 @@
 	<!-- Navigation -->
 	<c:set var = "navigation" scope = "session" value = "report"/>
   	<jsp:include page="header.jsp"></jsp:include>
+  	<!-- Recover session attributes -->
+	<c:set var="idLogin" scope="page" value="${sessionScope.idLogin}" />
+	<c:set var="Login" scope="page" value="${sessionScope.Login}" />
+	<c:set var="allowedall" scope="session" value="${allowedall}" />
+	
+	<c:if test="${Login == true }">
+  	
 
 	<div class="pt-5 container">
 
@@ -69,13 +77,16 @@
 					<td>${report.dateTime}</td>
 					<td>${report.description}</td>
 					<td><a href="${pageContext.request.contextPath}/reports/${report.id}/detail"><span class="fa fa-file-pdf-o" style ="font-size:24px" title="Download as PDF"></span></a>
+						<c:if test="${allowedall == true }">
 						&nbsp;|&nbsp;
 						<a href="${pageContext.request.contextPath}/reports/${report.id}/delete" onclick="return confirm('Report from ${report.employee.name} will be removed');"><span class="fa fa-trash"  style = "font-size:24px" title="Delete element"></span></a>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+	</c:if>
 
 <jsp:include page="scripts.jsp"></jsp:include>
 </body>

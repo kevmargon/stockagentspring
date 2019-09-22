@@ -6,10 +6,10 @@
 <c:set var="idLogin" scope="page" value="${sessionScope.idLogin}" />
 <c:set var="Login" scope="page" value="${sessionScope.Login}" />
 <c:set var="rolesEmployeeArray" scope="page" value="${sessionScope.rolesEmployeeArray}" />
-<c:set var="allowedall" scope="page" value="" />
+<c:set var="allowedall" scope="session" value="" />
 <c:forEach var="emprole" items="${rolesEmployeeArray}">
 	<c:if test="${emprole =='Do All Master/ Admin'}">
-		<c:set var="allowedall" scope="page" value="true" />
+		<c:set var="allowedall" scope="session" value="true" />
 	</c:if>
 </c:forEach>
 
@@ -28,13 +28,13 @@
 <c:if test="${navigation =='category'}">
 	<c:set var="active2" scope="page" value="active" />
 </c:if>
-<c:if test="${navigation =='direction'}">
+<c:if test="${navigation =='report'}">
 	<c:set var="active3" scope="page" value="active" />
 </c:if>
-<c:if test="${navigation =='report'}">
+<c:if test="${navigation =='employee'}">
 	<c:set var="active4" scope="page" value="active" />
 </c:if>
-<c:if test="${navigation =='employee'}">
+<c:if test="${navigation =='direction'}">
 	<c:set var="active5" scope="page" value="active" />
 </c:if>
 
@@ -53,21 +53,21 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
-	<c:if test="${Login =='true'}">
-		<c:if test="${allowedall =='true'}">
+	<c:if test="${Login ==true}">
+		<c:if test="${allowedall == true}">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link ${active3}"
+					<li class="nav-item"><a class="nav-link ${active1}"
 						href="${pageContext.request.contextPath}/products">Products</a></li>
-					<li class="nav-item"><a class="nav-link ${active4}"
+					<li class="nav-item"><a class="nav-link ${active2}"
 						href="${pageContext.request.contextPath}/categories">Categories</a></li>
 					<li class="nav-item"><a class="nav-link ${active3}"
-						href="${pageContext.request.contextPath}/directions">Directions</a></li>
-					<li class="nav-item"><a class="nav-link ${active4}"
 						href="${pageContext.request.contextPath}/reports">Reports</a></li>
-					<li class="nav-item"><a class="nav-link ${active5}"
+					<li class="nav-item"><a class="nav-link ${active4}"
 						href="${pageContext.request.contextPath}/employees">Employees</a></li>
-					<li class="nav-item"><a class="nav-link ${active6}"
+					<li class="nav-item"><a class="nav-link ${active5}"
+						href="${pageContext.request.contextPath}/directions">Directions</a></li>
+					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/login">Logout</a></li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0"
@@ -78,16 +78,16 @@
 				</form>
 			</div>
 		</c:if>
-		<c:if test="${allowedall !='true'}">
+		<c:if test="${allowedall != true}">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link ${active3}"
+					<li class="nav-item"><a class="nav-link ${active1}"
 						href="${pageContext.request.contextPath}/products">Products</a></li>
-					<li class="nav-item"><a class="nav-link ${active4}"
+					<li class="nav-item"><a class="nav-link ${active2}"
 						href="${pageContext.request.contextPath}/categories">Categories</a></li>
-					<li class="nav-item"><a class="nav-link ${active4}"
+					<li class="nav-item"><a class="nav-link ${active3}"
 						href="${pageContext.request.contextPath}/reports">Reports</a></li>
-					<li class="nav-item"><a class="nav-link ${active6}"
+					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/login">Logout</a></li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0"
@@ -99,15 +99,17 @@
 			</div>
 		</c:if>
 	</c:if>
-	<c:if test="${Login =='false'}">
-		<li class="nav-item"><a class="nav-link ${active6}"
-						href="${pageContext.request.contextPath}/login">Log In</a></li>
-	</c:if>
-
 </nav>
+<c:if test="${Login == false}">
+		
+		<div class="container pt-5">
+		<div class="row">
+			<div class="col">
+				<h1>Sorry. You are not Log In</h1>
+				<a class="btn btn-primary"
+					href="${pageContext.request.contextPath}/login">Log In</a>
+			</div>
 
-<c:if test="${Login =='false'}">
-		<br>
-		<h1>Sorry. You are not logged</h1>
-		<br>
+		</div>
+	</div>
 </c:if>

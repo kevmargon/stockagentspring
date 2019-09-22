@@ -17,13 +17,9 @@
 			<div class="col">
 				<h1>Unexpected error happened!</h1>
 				<a class="btn btn-primary"
-					href="${pageContext.request.contextPath}/products">Back to
-					list</a>
+					href="${pageContext.request.contextPath}/products">Back to list</a>
 			</div>
-
 		</div>
-
-
 	</div>
 <jsp:include page="scripts.jsp"></jsp:include>
 </body>

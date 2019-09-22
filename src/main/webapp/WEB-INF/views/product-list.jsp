@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page session="true"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,12 +14,16 @@
 
 </head>
 <body>
-	<!-- Navigation -->
+<!-- Navigation -->
 	<c:set var = "navigation" scope = "session" value = "product"/>
   	<jsp:include page="header.jsp"></jsp:include>
+<!-- Recover session attributes -->
+	<c:set var="idLogin" scope="page" value="${sessionScope.idLogin}" />
+	<c:set var="Login" scope="page" value="${sessionScope.Login}" />
+	<c:set var="allowedall" scope="session" value="${allowedall}" />
+	<c:if test="${Login == true }">
 
 	<div class="pt-5 container">
-
 		<h1>Products Directory</h1>
 		<hr />
 		
@@ -49,21 +54,23 @@
 			</c:otherwise>
 		</c:choose>
 		
-<!-- 		REV el DROPDOWN NO ESTÁ FUNCIONANDO!!!-->
 		<div class="btn-group">
 			<div class="dropdown">
+			<p  style="text-align: left;">
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<c:forEach items="${categories}" var="category"> 
 						 <a class="dropdown-item" href="${pageContext.request.contextPath}/categories/${category.id}/productslist">${category.name}</a>
 					</c:forEach>
 				</div>
+			</p>
 			</div>
 				
-			
+			<c:if test="${allowedall == true }">
 			<p  style="text-align: right; margin-left: 10px;">
 			<button class = "btn btn-primary" onclick="window.location.href = '${pageContext.request.contextPath}/products/empty'">Add Product</button>
-		</p>
+			</p>
+			</c:if>
 		</div>
 
 
@@ -87,16 +94,19 @@
 					<td><span class = "badge badge-light" ><a href="${pageContext.request.contextPath}/categories/${product.category.id}">${product.category.name}</a></span>
 					</td>
 					<td style="min-width:200px;"> <a href="${pageContext.request.contextPath}/products/${product.id}/detail"><span class="fa fa-eye" style ="font-size:24px" title="Show details"></span></a>
+						<c:if test="${allowedall == true }">
 						&nbsp;|&nbsp;
 						<a href="${pageContext.request.contextPath}/products/${product.id}"><span class="fa fa-edit" style = "font-size:24px" title="Edit element"></span></a>
 						&nbsp;|&nbsp;
 						<a href="${pageContext.request.contextPath}/products/${product.id}/delete" onclick="return confirm('${product.name} will be removed');"><span class="fa fa-trash"  style = "font-size:24px" title="Delete element"></span></a>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
 
 	</div>
+	</c:if>
 
 <jsp:include page="scripts.jsp"></jsp:include>
 </body>

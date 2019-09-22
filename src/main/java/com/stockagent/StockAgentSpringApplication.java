@@ -244,6 +244,7 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		roleRepository.save(rol2);
 		employeeRepository.save(emp3);
 		
+		// Many roles have been proposed as a permission for each application fuction/action, so in the future we can set for each employee their own permissions.
 		String tiposRole[] = new String[]{"See List Products", "See Detail Product", "Add Product","Delete Product", "Update Product",
 				"See List Suppliers","Add Supplier", "See Detail Supplier", "Delete Supplier", "Update Supplier",
 				"See List Categories", "See Detail Category", "Add Category", "Delete Category", "Update Category",

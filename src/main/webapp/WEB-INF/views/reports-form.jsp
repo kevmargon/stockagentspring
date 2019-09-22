@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page errorPage="error.jsp"%>
+<%@ page session="true"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,15 @@
 <title>Report Form</title>
 </head>
 <body>
+<!-- Navigation -->
+	<c:set var = "navigation" scope = "session" value = "report"/>
 	<jsp:include page="header.jsp"></jsp:include>
+<!-- Recover session attributes -->
+	<c:set var="idLogin" scope="page" value="${sessionScope.idLogin}" />
+	<c:set var="Login" scope="page" value="${sessionScope.Login}" />
+	<c:set var="allowedall" scope="session" value="${allowedall}" />
+	<c:if test="${Login == true }">
+	
 
 	<div class="container">
 
@@ -36,6 +46,7 @@
 		</div>
 		
 	</div>
+	</c:if>
 <jsp:include page="scripts.jsp"></jsp:include>
 
 </body>

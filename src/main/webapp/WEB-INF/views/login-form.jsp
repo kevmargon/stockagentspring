@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1"%>
 <%@ page errorPage="error.jsp" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,7 +15,12 @@
 
   </head>
   <body class="text-center">
-<div class="wrapper fadeInDown">
+<!-- Set session attributes -->
+	<c:set var="idLogin" scope="session" value="0" />
+	<c:set var="Login" scope="session" value="0" />
+	<c:set var="allowedall" scope="session" value="0" />
+ 
+	<div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
 
@@ -27,13 +34,12 @@
       <input type="text" id="login" class="fadeIn second" name="user" placeholder="login" required />
       <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password" required />
       <input type="submit" class="fadeIn fourth" value="Log In" />
+      
     </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
+<!--     Remind Passowrd -->
+<!--     <div id="formFooter"> -->
+<!--       <a class="underlineHover" href="#">Forgot Password?</a> -->
+<!--     </div> -->
   </div>
 </div>
 <jsp:include page="scripts.jsp"></jsp:include>
