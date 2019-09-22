@@ -31,7 +31,7 @@ public class Report implements Serializable{
 	private Date dateTime;
 	
 	//Unidirectional association to Employee
-	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY) 
+	@OneToOne(fetch = FetchType.LAZY) 
 	@JoinColumn(name = "id_employee") //  Report is the owner class
 	private Employee employee;
 

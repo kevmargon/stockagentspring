@@ -20,7 +20,6 @@ import com.stockagent.model.Role;
 import com.stockagent.model.Supplier;
 import com.stockagent.repository.CategoryRepository;
 import com.stockagent.repository.CustomerRepository;
-import com.stockagent.repository.DirectionRepository;
 import com.stockagent.repository.EmployeeRepository;
 import com.stockagent.repository.OrderRepository;
 import com.stockagent.repository.ProductRepository;
@@ -37,9 +36,6 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 
 	@Autowired
 	private CustomerRepository customerRepository;
-
-	@Autowired
-	private DirectionRepository directionRepository;
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
@@ -181,8 +177,8 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		
 		Employee emp2 = new Employee(loginserviceimpl.encriptsha1("sadia"),loginserviceimpl.encriptsha1("4321"),"Ismael","Rodríguez","de la Moral","76521223Y","685954213");
 		Direction dir5 = new Direction("Calle Teredia",31,24001,"León","León","Spain");
-		Employee emp8 = new Employee(loginserviceimpl.encriptsha1("raton"),loginserviceimpl.encriptsha1("1234"));
-		employeeRepository.save(emp8);
+//		Employee emp8 = new Employee(loginserviceimpl.encriptsha1("raton"),loginserviceimpl.encriptsha1("1234"));
+//		employeeRepository.save(emp8);
 
 		emp2.setDirection(dir5);
 		Report rep2 = reportRepository.save(new Report("Esto es una segunda prueba de informe",report.getDateTime()));
@@ -244,18 +240,18 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		roleRepository.save(rol2);
 		employeeRepository.save(emp3);
 		
-		// Many roles have been proposed as a permission for each application fuction/action, so in the future we can set for each employee their own permissions.
-		String tiposRole[] = new String[]{"See List Products", "See Detail Product", "Add Product","Delete Product", "Update Product",
-				"See List Suppliers","Add Supplier", "See Detail Supplier", "Delete Supplier", "Update Supplier",
-				"See List Categories", "See Detail Category", "Add Category", "Delete Category", "Update Category",
-				"Add Order","See List Orders", "See Detail Order", "Delete Order", "Update Order", 
-				"Add Report", "See List Reports", "See Detail Report", "Delete Report", "Update Report", 
-				"See Own Profile Employee  Detail","See List Employees","Add Employee", "See Detail Employee", "Delete Employee" ,"Update Employee" };
-		
-		for (int i =0; i< tiposRole.length; i++) {
-			Role rol = new Role(tiposRole[i]);
-			roleRepository.save(rol);
-		}
+//		// Many roles have been proposed as a permission for each application fuction/action, so in the future we can set for each employee their own permissions.
+//		String tiposRole[] = new String[]{"See List Products", "See Detail Product", "Add Product","Delete Product", "Update Product",
+//				"See List Suppliers","Add Supplier", "See Detail Supplier", "Delete Supplier", "Update Supplier",
+//				"See List Categories", "See Detail Category", "Add Category", "Delete Category", "Update Category",
+//				"Add Order","See List Orders", "See Detail Order", "Delete Order", "Update Order", 
+//				"Add Report", "See List Reports", "See Detail Report", "Delete Report", "Update Report", 
+//				"See Own Profile Employee  Detail","See List Employees","Add Employee", "See Detail Employee", "Delete Employee" ,"Update Employee" };
+//		
+//		for (int i =0; i< tiposRole.length; i++) {
+//			Role rol = new Role(tiposRole[i]);
+//			roleRepository.save(rol);
+//		}
 	
 
 		
