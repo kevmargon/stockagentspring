@@ -244,19 +244,17 @@ public class StockAgentSpringApplication implements CommandLineRunner {
 		roleRepository.save(rol2);
 		employeeRepository.save(emp3);
 		
-		String tiposRole [] = {"See List Products", "See Detail Product", "Add Product","Delete Product", "Update Product",
+		String tiposRole[] = new String[]{"See List Products", "See Detail Product", "Add Product","Delete Product", "Update Product",
 				"See List Suppliers","Add Supplier", "See Detail Supplier", "Delete Supplier", "Update Supplier",
 				"See List Categories", "See Detail Category", "Add Category", "Delete Category", "Update Category",
 				"Add Order","See List Orders", "See Detail Order", "Delete Order", "Update Order", 
 				"Add Report", "See List Reports", "See Detail Report", "Delete Report", "Update Report", 
 				"See Own Profile Employee  Detail","See List Employees","Add Employee", "See Detail Employee", "Delete Employee" ,"Update Employee" };
 		
-		for (int i =0; i == tiposRole.length; i++) {
-			Role rol = new Role();
-			rol.setName(tiposRole[i]);
+		for (int i =0; i< tiposRole.length; i++) {
+			Role rol = new Role(tiposRole[i]);
 			roleRepository.save(rol);
 		}
-		
 	
 
 		

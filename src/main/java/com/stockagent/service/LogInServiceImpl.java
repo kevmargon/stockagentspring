@@ -1,15 +1,14 @@
 package com.stockagent.service;
 
 import java.math.BigInteger;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.stockagent.model.Employee;
 import com.stockagent.model.Role;
 import com.stockagent.repository.EmployeeRepository;
@@ -18,6 +17,9 @@ import com.stockagent.repository.EmployeeRepository;
 public class LogInServiceImpl implements LogInService{
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	@Autowired
+	private HttpServletRequest request;
+
 	
 	@Override
 	public boolean userConnection(String user, String pass) {
@@ -26,17 +28,30 @@ public class LogInServiceImpl implements LogInService{
 //		Searches and selects the employee with a centain user and password and
 //		stores  it in a the list (that will have only one element)
 		for (Employee e : employees) {
-			Long idLogin = e.getId(); // SET AS SESSION ATTRIBUTE
-			List <Role> roles = e.getRoles();// SET AS SESSION ATTRIBUTE
+			Long idLogin = e.getId(); 
+			request.getSession().setAttribute("idLogin", idLogin);// SET AS SESSION ATTRIBUTE
+			List <Role> roles = e.getRoles();
+			String rolesEmployeeArray [] = new String[roles.size()+1];
+			int i=0;
+			for(Role r: roles) {
+				rolesEmployeeArray [i] =r.getName();
+				i++;
+			}
+			request.getSession().setAttribute("rolesEmployeeArray", rolesEmployeeArray);
+			
+			// SET AS SESSION ATTRIBUTE
 //			System.out.print(e.getId() + " === ");
 //			System.out.print(e.getUser() + " === ");
 //			System.out.println(e.getPass() + " === ");
 		}
 		if (employees.size() == 0) {
-			Boolean Login = false; // SET AS SESSION ATTRIBUTE
+			Boolean Login = false; 
+			request.getSession().setAttribute("Login", Login);
+			// SET AS SESSION ATTRIBUTE
 			return false;
 		} else {
-			Boolean Login = true;// SET AS SESSION ATTRIBUTE
+			Boolean Login = true;
+			request.getSession().setAttribute("Login", Login);// SET AS SESSION ATTRIBUTE
 			return true;
 		}
 	}

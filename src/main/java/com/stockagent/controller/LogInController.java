@@ -1,6 +1,7 @@
 package com.stockagent.controller;
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -9,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 
 import com.stockagent.service.LogInService;
 
@@ -21,6 +26,10 @@ public class LogInController{
 
 	@Autowired
 	private LogInService loginService;
+	@Autowired
+    private HttpServletRequest request;
+    //public boolean login = (boolean)request.getAttribute("Login");//da null
+
 	
 	public String notification = null; 
 	public String notificationLabel = null; 
