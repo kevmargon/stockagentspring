@@ -1,7 +1,6 @@
 package com.stockagent.model;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +61,7 @@ public class Employee implements Serializable{
 	private Report report;
 	
 	// Many-to-many association to Role
-	@ManyToMany 
+	@ManyToMany
 	@JoinTable(name = "employee_role",
 	joinColumns = @JoinColumn(name = "id_employee", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "id_role", referencedColumnName = "id"))
