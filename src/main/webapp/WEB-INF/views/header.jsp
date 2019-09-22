@@ -54,7 +54,7 @@
 	</button>
 
 	<c:if test="${Login =='true'}">
-		<c:if test="${allowedaall =='true'}">
+		<c:if test="${allowedall =='true'}">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link ${active3}"
@@ -78,7 +78,7 @@
 				</form>
 			</div>
 		</c:if>
-		<c:if test="${allowedaall !='true'}">
+		<c:if test="${allowedall !='true'}">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link ${active3}"
@@ -108,6 +108,6 @@
 
 <c:if test="${Login =='false'}">
 		<br>
-		<h1>Sorry. You are not Log In</h1>
+		<h1>Sorry. You are not logged</h1>
 		<br>
 </c:if>
