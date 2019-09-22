@@ -57,7 +57,7 @@ public class Employee implements Serializable{
 	private Direction direction;
 	
 	//Unidirectional association to Report
-	@OneToOne (mappedBy = "employee", fetch = FetchType.LAZY) 
+	@OneToOne (mappedBy = "employee", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY) 
 	private Report report;
 	
 	// Many-to-many association to Role

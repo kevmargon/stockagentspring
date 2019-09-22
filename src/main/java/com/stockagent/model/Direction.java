@@ -43,7 +43,7 @@ public class Direction implements Serializable{
 	private String country;
 	
 	// Unidirectional one-to-one association to Employee
-	@OneToOne (mappedBy = "direction", fetch = FetchType.LAZY) 
+	@OneToOne (cascade = {CascadeType.ALL}, mappedBy = "direction", fetch = FetchType.LAZY) 
 	private Employee employee;
 	
 	// Unidirectional one-to-one association to Customer

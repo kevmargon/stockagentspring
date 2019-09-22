@@ -105,7 +105,9 @@
 		<div class="container pt-5">
 		<div class="row">
 			<div class="col">
-				<h1>Sorry. You are not Log In</h1>
+				<h1>Sorry! You are not logged in.</h1>
+				<h1>Sgd: Billy</h1>
+				<br>
 				<a class="btn btn-primary"
 					href="${pageContext.request.contextPath}/login">Log In</a>
 			</div>
