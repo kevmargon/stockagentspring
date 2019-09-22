@@ -25,7 +25,7 @@
 	<c:if test="${Login == true }">
   	
 
-	<div class="pt-5 container">
+	<div style="margin-bottom: 100px;'"class="pt-5 container">
 
 		<h1>Reports Directory</h1>
 		<hr />

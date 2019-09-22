@@ -57,8 +57,8 @@ public class Employee implements Serializable{
 	private Direction direction;
 	
 	//Unidirectional association to Report
-	@OneToOne (mappedBy = "employee", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY) 
-	private Report report;
+	@OneToMany(mappedBy = "employee", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY) 
+	private List<Report> reports;
 	
 	// Many-to-many association to Role
 	@ManyToMany
@@ -82,10 +82,11 @@ public class Employee implements Serializable{
 		this.pass = pass;
 	}
 
-
-
-	public Employee(String user, String pass, String name, String surname1, String surname2, String dni,
-			String phoneNumber, Direction direction, Report report) {
+	
+	public Employee(Long id, String user, String pass, String name, String surname1, String surname2, String dni,
+			String phoneNumber, Direction direction, List<Report> reports, List<Role> roles, List<Order> orders) {
+		super();
+		this.id = id;
 		this.user = user;
 		this.pass = pass;
 		this.name = name;
@@ -94,9 +95,11 @@ public class Employee implements Serializable{
 		this.dni = dni;
 		this.phoneNumber = phoneNumber;
 		this.direction = direction;
-		this.report = report;
+		this.reports = reports;
 	}
-	
+
+
+
 	public Employee(String user, String pass, String name, String surname1, String surname2, String dni,
 			String phoneNumber) {
 		this.user = user;
@@ -111,106 +114,156 @@ public class Employee implements Serializable{
 
 
 	// SET & GET METHODS
-	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
-	public String getUser() {
-		return user;
-	}
 
-	public String getPass() {
-		return pass;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getDni() {
-		return dni;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public Direction getDirection() {
-		return direction;
-	}
-
-	public Report getReport() {
-		return report;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public List<Order> getOrders() {
-		return orders;
-	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
+
+	public String getUser() {
+		return user;
+	}
+
+
+
 	public void setUser(String user) {
 		this.user = user;
 	}
+
+
+
+	public String getPass() {
+		return pass;
+	}
+
+
 
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
 
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public void setDirection(Direction direction) {
-		this.direction = direction;
-	}
-
-	public void setReport(Report report) {
-		this.report = report;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
 
 	public String getSurname1() {
 		return surname1;
 	}
 
+
+
 	public void setSurname1(String surname1) {
 		this.surname1 = surname1;
 	}
+
+
 
 	public String getSurname2() {
 		return surname2;
 	}
 
+
+
 	public void setSurname2(String surname2) {
 		this.surname2 = surname2;
 	}
+
+
+
+	public String getDni() {
+		return dni;
+	}
+
+
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+
+
+	public void setDirection(Direction direction) {
+		this.direction = direction;
+	}
+
+
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
+
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	
 	
 	//ADDITIONAL METHODS
 	/* Methods ascribing the employee and direction each other.
@@ -218,6 +271,8 @@ public class Employee implements Serializable{
 	 * to apply (not usual for oneToOne association).
 	 */
 	
+	
+
 	public void addDirection (Direction direction) {
 		setDirection(direction);
 		direction.setEmployee(this);

@@ -3,7 +3,6 @@ package com.stockagent.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,13 +24,15 @@ public class Report implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id")
 	private Long id;
+	
 	@Column (name = "description")
 	private String description;
+	
 	@Column (name = "date")
 	private Date dateTime;
 	
 	//Unidirectional association to Employee
-	@OneToOne(fetch = FetchType.LAZY) 
+	@ManyToOne(fetch = FetchType.LAZY) 
 	@JoinColumn(name = "id_employee") //  Report is the owner class
 	private Employee employee;
 
@@ -47,41 +48,40 @@ public class Report implements Serializable{
 	}
 
 	// GETTERS & SETTERS
-	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Long getId() {
 		return id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Date getDateTime() {
-		return dateTime;
-	}
-
-	public Employee getEmployee() {
-		return employee;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Date getDateTime() {
+		return dateTime;
 	}
 
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
 
+	public Employee getEmployee() {
+		return employee;
+	}
+
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	//ADDITIONAL METHODS
@@ -90,14 +90,14 @@ public class Report implements Serializable{
 	 * to apply (not usual for oneToOne association).
 	 */
 	
-	public void addEmployee (Employee employee) {
-		setEmployee(employee);
-		employee.setReport(this);
-	}
-	
-	public void removeEmployee (Employee employee) {
-		setEmployee(null);
-		employee.setReport(null);
-	}
+//	public void addEmployee (Employee employee) {
+//		setEmployee(employee);
+//		employee.setReports(this);
+//	}
+//	
+//	public void removeEmployee (Employee employee) {
+//		setEmployee(null);
+//		employee.setReports(null);
+//	}
 
 }
