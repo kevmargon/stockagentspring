@@ -39,6 +39,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         log.debug("Request to delete Employee : {}", id);
         employeeRepository.deleteById(id);
 	}
+	
+	@Override
+	public List<Employee> findList(Long id) {
+		log.debug("Request to get list of employees by id");
+		
+        return employeeRepository.findListById(id);
+	}
 
 
 

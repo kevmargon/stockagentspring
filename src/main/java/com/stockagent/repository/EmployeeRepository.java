@@ -32,4 +32,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	List<Employee> findByUser(@Param("user") String user );
 	
 	
+	@Query(value = "SELECT e FROM Employee e WHERE e.id = :id")
+	List<Employee> findListById(@Param("id") Long id );
+	
+	
 }

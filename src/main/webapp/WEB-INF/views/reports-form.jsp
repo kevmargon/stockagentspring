@@ -19,6 +19,7 @@
 	<c:set var = "navigation" scope = "session" value = "report"/>
 	<jsp:include page="header.jsp"></jsp:include>
 <!-- Recover session attributes -->
+	<c:set var="nameEmployee" scope="page" value="${sessionScope.nameEmployee}" />
 	<c:set var="idLogin" scope="page" value="${sessionScope.idLogin}" />
 	<c:set var="Login" scope="page" value="${sessionScope.Login}" />
 	<c:set var="allowedall" scope="session" value="${allowedall}" />
@@ -36,12 +37,10 @@
 					<div class="form-group">
 						<textarea class="form-control" name="description" id="description" placeholder="Explain the situation" rows=10></textarea>
 					</div>
-
-					<input type="hidden" name="id" value="${report.id}" />
-
+					<input type="hidden" name="employeeid" id="employeeid" value="${idLogin}" />
 					<button type="submit" class="btn btn-primary">Send</button>
 				</form>
-				<a href="${pageContext.request.contextPath}/reports">Back	to List</a>
+				<a href="${pageContext.request.contextPath}/reports">Back to List</a>
 			</div>
 		</div>
 		

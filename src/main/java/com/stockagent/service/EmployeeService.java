@@ -34,10 +34,10 @@ public interface EmployeeService{
 	void delete(Long id);
 	
 	/**
-	 * Get list of employees by category id
+	 * Get list of employees by id
 	 * @param id
 	 * @return
 	 */	
 
-
+	List<Employee> findList(Long id);
 }

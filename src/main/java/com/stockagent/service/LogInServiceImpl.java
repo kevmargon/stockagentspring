@@ -30,6 +30,8 @@ public class LogInServiceImpl implements LogInService{
 		for (Employee e : employees) {
 			Long idLogin = e.getId(); 
 			request.getSession().setAttribute("idLogin", idLogin);// SET AS SESSION ATTRIBUTE
+			String nameEmployee = e.getName(); 
+			request.getSession().setAttribute("nameEmployee", nameEmployee);// SET AS SESSION ATTRIBUTE
 			List <Role> roles = e.getRoles();
 			String rolesEmployeeArray [] = new String[roles.size()+1];
 			int i=0;
