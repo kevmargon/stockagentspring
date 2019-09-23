@@ -2,6 +2,7 @@ package com.stockagent.repository;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,8 +31,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	 */
 	@Query(value = "SELECT e FROM Employee e WHERE e.user = :user")
 	List<Employee> findByUser(@Param("user") String user );
-	
-	
+	/**
+	 * ADDICIONAL JPA method /findListById: . Searches and selects the employee with a certain id and returns a List<Employee>
+	 *  (instead of a List<Optional> as the JPA available method).
+	 * 
+	 * @param id.
+	 * @return List <Employee>
+	 */
 	@Query(value = "SELECT e FROM Employee e WHERE e.id = :id")
 	List<Employee> findListById(@Param("id") Long id );
 	

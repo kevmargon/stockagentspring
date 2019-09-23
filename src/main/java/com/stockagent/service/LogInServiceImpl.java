@@ -3,12 +3,14 @@ package com.stockagent.service;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.stockagent.model.Employee;
 import com.stockagent.model.Role;
 import com.stockagent.repository.EmployeeRepository;

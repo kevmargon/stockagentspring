@@ -22,6 +22,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 //"SELECT p FROM Product p WHERE p.category.id =: id";
 	List<Product> findByCategoryId(@Param("id") Long id);
 	
+	/**
+	 * ADDICIONAL JPA method /searchProductByName: . Searches and selects the list of
+	 * products by its name.
+	 * 
+	 * @param id the id of the related supplier
+	 * @return List <Product>
+	 */	
 	@Query(value = "SELECT p FROM Product p WHERE p.name LIKE %:name%")
 	List<Product> searchProductByName(@Param("name") String name);
 

@@ -1,8 +1,6 @@
 package com.stockagent.controller;
 import java.util.Optional;
 
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.stockagent.model.Category;
 import com.stockagent.model.Product;
@@ -33,6 +33,8 @@ public class ProductController {
 	private CategoryRepository categoryRepository;
 	@Autowired
 	private SupplierRepository supplierRepository;
+	@Autowired
+	private HttpServletRequest request;
 	
 //	I declare 'notification' and 'notificationLabel' as class variables so that they are easy to 
 //	share and pass through one method to the other (from the Post method for saving products and the Get for deleting
@@ -41,6 +43,11 @@ public class ProductController {
 	public String notification = null; 
 	public String notificationLabel = null; 
 	
+	
+//	public boolean login = (boolean) request.getSession().getAttribute("Login");
+//	public String idLogin = (String) request.getSession().getAttribute("idLogin");
+//	public String nameEmployee = (String) request.getSession().getAttribute("nameEmployee");
+//	public String allowedall = (String) request.getSession().getAttribute("allowedall");
 
 	@GetMapping("/products")
 	public String root() {
@@ -221,9 +228,15 @@ public class ProductController {
 	@GetMapping("/products/{id}/delete")
 	public String deleteProduct(@PathVariable Long id) {
 		log.debug("request to delete Product : {}", id);
-		productService.delete(id);
-		notification = "The product has been deleted succesfully!";
-		notificationLabel = "success";
+//		if(allowedall=="true") {
+			productService.delete(id);
+			notification = "The product has been deleted succesfully!";
+			notificationLabel = "success";
+//		}else {
+//			notification = "You don't have permissions for this action!";
+//			notificationLabel = "error";
+//		}
+
 		return "redirect:/products" ;
 	}
 
