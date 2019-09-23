@@ -53,28 +53,32 @@
 			<c:otherwise>
 			</c:otherwise>
 		</c:choose>
-		
-		<div class="btn-group">
-			<div class="dropdown">
-			<p  style="text-align: left;">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<c:forEach items="${categories}" var="category"> 
-						 <a class="dropdown-item" href="${pageContext.request.contextPath}/categories/${category.id}/productslist">${category.name}</a>
-					</c:forEach>
+
+			<div class="btn-group">
+				<div class="dropdown">
+
+					<button type="button" class="btn btn-primary dropdown-toggle"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<c:forEach items="${categories}" var="category">
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath}/categories/${category.id}/productslist">${category.name}</a>
+						</c:forEach>
+					</div>
+
 				</div>
-			</p>
+
+				<c:if test="${allowedall == true }">
+					<p style="text-align: right; margin-left: 10px;">
+						<button class="btn btn-primary"
+							onclick="window.location.href = '${pageContext.request.contextPath}/products/empty'">Add
+							Product</button>
+					</p>
+				</c:if>
 			</div>
-				
-			<c:if test="${allowedall == true }">
-			<p  style="text-align: right; margin-left: 10px;">
-			<button class = "btn btn-primary" onclick="window.location.href = '${pageContext.request.contextPath}/products/empty'">Add Product</button>
-			</p>
-			</c:if>
-		</div>
 
 
-		<table class="table table-striped table-bordered">
+			<table class="table table-striped table-bordered">
 
 			<tr class="thead-gd light">
 				<th>Name</th>
